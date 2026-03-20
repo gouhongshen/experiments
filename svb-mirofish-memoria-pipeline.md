@@ -115,7 +115,7 @@ T=6 ●───── 幸存分支进入验证 → 优胜者合并回 main
 ### 2.1 安装依赖
 
 ```bash
-pip install requests pandas yfinance gdeltdoc openai python-dotenv
+pip install requests pandas yfinance gdeltdoc python-dotenv
 ```
 
 ### 2.2 目录结构
@@ -578,6 +578,9 @@ LLM_MODEL = os.getenv("LLM_MODEL", "qwen-plus")
 ANALYSIS_PROMPT_TEMPLATE = """
 ## 当前时间步: {step_id}
 
+## 当前分支假设
+{branch_directive}
+
 ## 你在 Memoria 中记录的历史判断
 {memory_context}
 
@@ -615,11 +618,13 @@ ANALYSIS_PROMPT_TEMPLATE = """
 - 做空基金: "完美风暴正在形成，加仓做空区域银行"
 """
 
-def call_agent(agent_id: str, step_id: str, seed: dict, memory_context: str) -> dict:
+def call_agent(agent_id: str, step_id: str, seed: dict,
+               memory_context: str, branch_directive: str) -> dict:
     """调用单个 Agent，返回结构化判断"""
     persona = PERSONAS[agent_id]
     user_msg = ANALYSIS_PROMPT_TEMPLATE.format(
         step_id=step_id,
+        branch_directive=branch_directive or "main 主线（尚未分叉）",
         memory_context=memory_context or "（首次分析，暂无历史记录）",
         key_events="\n".join(f"- {e}" for e in seed.get("key_events", [])),
         news_summary="\n".join(f"- {n['title']}" for n in seed.get("news", [])[:10]),
@@ -661,10 +666,11 @@ Memoria v0.2.0 **同时暴露两套入口**（启动时指定 `--transport http`
 
 两套入口必须同时可用，缺一不可。客户端按功能分别路由：
 
-> **⚠️ 重要架构假设：Memoria 维护服务端"当前活跃分支"状态。**
+> **关键语义约定（可依赖）**：Memoria 维护服务端"当前活跃分支"状态。
 > `checkout(branch)` 会在服务端切换当前分支，后续 `store`/`retrieve` 会自动作用于该分支。
-> 因此本 pipeline **必须串行操作同一个 Memoria 实例**——在一个分支写完并 snapshot 后，
-> 才能 checkout 到下一个分支。如果需要并行操作多个分支，需部署多个 Memoria 实例。
+> 这意味着本 pipeline 可以把 `checkout -> retrieve/store -> snapshot` 视为一个严格成立的分支上下文切换序列。
+> 出于实现简洁性，本文仍采用**单实例串行调度**：在一个分支写完并 snapshot 后，再 checkout 到下一个分支。
+> 如果未来要并行推进多个分支，可扩展为多实例 Memoria worker 池，但不影响本文的语义正确性。
 
 ```python
 # memoria/client.py
@@ -946,6 +952,7 @@ class Orchestrator:
         self.ev = recorder or EventRecorder()
         self.executor = ThreadPoolExecutor(max_workers=12)
         self.results = {}  # {step_id: {branch: {agent_id: result}}}
+        self.archived_branches = []
 
     def run(self):
         """执行完整 pipeline（涌现式分叉版）
@@ -974,7 +981,10 @@ class Orchestrator:
                 self.mem.checkout(branch)
 
                 memory_context = self._get_memory_context(branch, step_id)
-                branch_results = self._run_agents_parallel(step_id, seed, memory_context)
+                branch_directive = self._get_branch_directive(branch)
+                branch_results = self._run_agents_parallel(
+                    step_id, seed, memory_context, branch_directive
+                )
                 self.results.setdefault(step_id, {})[branch] = branch_results
                 self._emit_agent_votes(step_id, branch, branch_results)
 
@@ -1009,6 +1019,13 @@ class Orchestrator:
                         child_names.append(child_name)
                         self.mem.checkout(branch)
                         self.mem.create_branch(child_name, cluster["hypothesis"])
+                        self._seed_child_branch(
+                            parent_branch=branch,
+                            child_branch=child_name,
+                            step_id=step_id,
+                            cluster=cluster,
+                            consensus=consensus,
+                        )
                         log.info(f"  ├─ 分支 {child_name}: "
                                  f"{cluster['hypothesis'][:40]} "
                                  f"({len(cluster['members'])} 人)")
@@ -1040,6 +1057,7 @@ class Orchestrator:
                         self.ev.archive(step_id, branch,
                                         consensus["avg_confidence"], lesson)
                         self._archive_branch(branch, step_id, consensus)
+                        self.archived_branches.append(branch)
                         active_branches.remove(branch)
 
             # 将本步新创建的子分支加入活跃列表
@@ -1052,7 +1070,7 @@ class Orchestrator:
             log.info(f"\n  🌳 活跃分支: {active_branches}")
 
         # 最终汇总
-        self._final_report(active_branches)
+        return self._final_report(active_branches)
 
     def _load_seed(self, step_id):
         path = f"data/timesteps/{step_id}_seed.json"
@@ -1061,19 +1079,36 @@ class Orchestrator:
     def _get_memory_context(self, branch, step_id):
         """从 Memoria 检索当前分支的历史判断"""
         try:
-            result = self.mem.retrieve(f"SVB分析 {branch} 预测判断", limit=10)
+            result = self.mem.retrieve(
+                f"SVB分析 {branch} branch_profile branch_hypothesis 预测判断",
+                limit=10,
+            )
             if isinstance(result, dict) and "content" in result:
                 return str(result["content"])
             return str(result)[:2000]
         except Exception:
             return ""
 
-    def _run_agents_parallel(self, step_id, seed, memory_context):
+    def _get_branch_directive(self, branch):
+        """读取当前分支的世界线假设，作为 Agent 的显式指令。"""
+        if branch == "main":
+            return "main 主线（尚未分叉，继续基于公共历史推进）"
+        try:
+            result = self.mem.retrieve(f"{branch} branch_profile hypothesis", limit=3)
+            if isinstance(result, dict) and "content" in result:
+                return str(result["content"])
+            return str(result)[:500] or f"{branch} 分支（沿继承记忆继续推进）"
+        except Exception:
+            return f"{branch} 分支（沿继承记忆继续推进）"
+
+    def _run_agents_parallel(self, step_id, seed, memory_context, branch_directive):
         """并行调用所有 Agent"""
         agent_ids = list(PERSONAS.keys())
         futures = {}
         for aid in agent_ids:
-            future = self.executor.submit(call_agent, aid, step_id, seed, memory_context)
+            future = self.executor.submit(
+                call_agent, aid, step_id, seed, memory_context, branch_directive
+            )
             futures[aid] = future
 
         results = {}
@@ -1216,9 +1251,31 @@ class Orchestrator:
                 metadata={"step": step_id, "branch": branch, "agent": aid, "type": "judgment"},
             )
 
+    def _seed_child_branch(self, parent_branch, child_branch, step_id, cluster, consensus):
+        """在子分支创建后立即写入 branch profile，确保后续推演真的沿该世界线展开。"""
+        self.mem.checkout(child_branch)
+        self.mem.store(
+            content=json.dumps({
+                "type": "branch_profile",
+                "branch": child_branch,
+                "parent_branch": parent_branch,
+                "forked_at": step_id,
+                "risk_level": cluster["risk_level"],
+                "hypothesis": cluster["hypothesis"],
+                "members": cluster["members"],
+                "parent_avg_confidence": round(consensus["avg_confidence"], 2),
+            }, ensure_ascii=False),
+            metadata={
+                "type": "branch_profile",
+                "branch": child_branch,
+                "parent_branch": parent_branch,
+                "step": step_id,
+            },
+        )
+        self.mem.snapshot(f"{child_branch}__{step_id}_seeded")
+
     def _archive_branch(self, branch, step_id, consensus):
-        """归档低信心分支：提取教训后删除"""
-        # 用 LLM 从归档分支提取教训
+        """归档低信心分支：提取教训并冻结，保留分支以便后续 diff / rollback。"""
         self.mem.store(
             content=json.dumps({
                 "type": "archive_lesson",
@@ -1245,6 +1302,7 @@ class Orchestrator:
 
         report = {
             "surviving_branches": surviving_branches,
+            "archived_branches": self.archived_branches,
             "all_branches": list(all_branches),
             "timeline": {},
         }
@@ -1310,9 +1368,12 @@ def calibrate(results: dict) -> dict:
         calibration[step_id] = {}
         for branch, agent_results in results[step_id].items():
             confs = [r.get("confidence", 50) for r in agent_results.values()]
+            contagion_votes = [r.get("contagion_risk", "medium") for r in agent_results.values()]
             avg = sum(confs) / len(confs)
             std = (sum((c - avg) ** 2 for c in confs) / len(confs)) ** 0.5
             polarization = max(confs) - min(confs)
+            from collections import Counter
+            contagion_mode = Counter(contagion_votes).most_common(1)[0][0]
 
             drift = 0
             if branch in prev_step:
@@ -1322,6 +1383,7 @@ def calibrate(results: dict) -> dict:
                 "avg_confidence": round(avg, 2),
                 "std": round(std, 2),
                 "polarization": polarization,
+                "contagion_mode": contagion_mode,
                 "drift": round(drift, 2),
                 "agent_count": len(confs),
                 "agent_predictions": {
@@ -1345,13 +1407,13 @@ def calibrate(results: dict) -> dict:
 # calibration/ground_truth.py
 
 GROUND_TRUTH = {
-    "T0": {"event": "SVB公告亏损", "market_impact": "SIVB -60%", "actual_outcome": "银行挤兑开始"},
-    "T1": {"event": "融资失败", "market_impact": "SIVB 停牌", "actual_outcome": "大规模提款"},
-    "T2": {"event": "VC建议提款", "market_impact": "科技股普跌", "actual_outcome": "420亿美元单日提款"},
-    "T3": {"event": "SVB现金耗尽", "market_impact": "银行股暴跌", "actual_outcome": "监管介入"},
-    "T4": {"event": "救助谈判失败", "market_impact": "恐慌蔓延", "actual_outcome": "FDIC准备接管"},
-    "T5": {"event": "FDIC接管", "market_impact": "Signature Bank连锁倒闭", "actual_outcome": "全额担保"},
-    "T6": {"event": "联合声明", "market_impact": "市场企稳", "actual_outcome": "BTFP发布，危机缓解"},
+    "T0": {"event": "SVB公告亏损", "market_impact": "SIVB -60%", "actual_outcome": "银行挤兑开始", "expected_risk": "high"},
+    "T1": {"event": "融资失败", "market_impact": "SIVB 停牌", "actual_outcome": "大规模提款", "expected_risk": "high"},
+    "T2": {"event": "VC建议提款", "market_impact": "科技股普跌", "actual_outcome": "420亿美元单日提款", "expected_risk": "critical"},
+    "T3": {"event": "SVB现金耗尽", "market_impact": "银行股暴跌", "actual_outcome": "监管介入", "expected_risk": "critical"},
+    "T4": {"event": "救助谈判失败", "market_impact": "恐慌蔓延", "actual_outcome": "FDIC准备接管", "expected_risk": "critical"},
+    "T5": {"event": "FDIC接管", "market_impact": "Signature Bank连锁倒闭", "actual_outcome": "全额担保", "expected_risk": "high"},
+    "T6": {"event": "联合声明", "market_impact": "市场企稳", "actual_outcome": "BTFP发布，危机缓解", "expected_risk": "medium"},
 }
 
 def _auto_score(predictions: dict, truth: dict) -> dict:
@@ -1386,8 +1448,14 @@ def _auto_score(predictions: dict, truth: dict) -> dict:
         scores[aid] = round(score, 2)
     return {"per_agent": scores, "avg": round(sum(scores.values()) / len(scores), 2) if scores else 0}
 
+def _risk_alignment_score(predicted_risk: str, expected_risk: str) -> float:
+    """比较分支风险判断与真实历史方向是否一致。"""
+    order = {"low": 0, "medium": 1, "high": 2, "critical": 3}
+    distance = abs(order.get(predicted_risk, 1) - order.get(expected_risk, 1))
+    return round(max(0.0, 1.0 - 0.35 * distance), 2)
+
 def validate(calibration: dict) -> dict:
-    """将每步的 Agent 共识与真实结果对比（全自动评分）"""
+    """将每步的 Agent 共识与真实结果对比（关键词 + 风险方向的混合评分）"""
     validation = {}
     for step_id, truth in GROUND_TRUTH.items():
         step_cal = calibration.get(step_id, {})
@@ -1396,13 +1464,21 @@ def validate(calibration: dict) -> dict:
             "branches": {},
         }
         for branch, cal in step_cal.items():
-            auto_score = _auto_score(cal.get("agent_predictions", {}), truth)
+            keyword_score = _auto_score(cal.get("agent_predictions", {}), truth)
+            risk_score = _risk_alignment_score(
+                cal.get("contagion_mode", "medium"),
+                truth.get("expected_risk", "medium"),
+            )
+            hybrid_score = round(keyword_score["avg"] * 0.6 + risk_score * 0.4, 2)
             validation[step_id]["branches"][branch] = {
                 "avg_confidence": cal["avg_confidence"],
                 "polarization": cal["polarization"],
+                "contagion_mode": cal.get("contagion_mode", "medium"),
                 "drift": cal["drift"],
-                "auto_accuracy_score": auto_score["avg"],
-                "per_agent_score": auto_score["per_agent"],
+                "keyword_accuracy_score": keyword_score["avg"],
+                "risk_alignment_score": risk_score,
+                "hybrid_accuracy_score": hybrid_score,
+                "per_agent_score": keyword_score["per_agent"],
             }
     return validation
 ```
@@ -1548,7 +1624,7 @@ def choose_winner(validation: dict) -> dict:
     for step_id, step_payload in validation.items():
         weight = STEP_WEIGHTS.get(step_id, 1.0)
         for branch, branch_payload in step_payload.get("branches", {}).items():
-            score = branch_payload.get("auto_accuracy_score", 0.0)
+            score = branch_payload.get("hybrid_accuracy_score", 0.0)
             scores[branch] = scores.get(branch, 0.0) + score * weight
             steps_seen[branch] = steps_seen.get(branch, 0) + 1
 
@@ -2215,6 +2291,7 @@ python main.py
 
 ```
 requests>=2.28
+pandas>=1.5
 gdeltdoc>=1.0
 yfinance>=0.2
 python-dotenv>=1.0

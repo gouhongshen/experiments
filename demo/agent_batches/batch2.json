@@ -1,0 +1,155 @@
+{
+  "fed_watcher": {
+    "T0": {
+      "confidence": 72,
+      "verdict": "风险已显性化",
+      "prediction": "SVB 的期限错配和存款集中度问题会迅速放大市场对地区银行的担忧。",
+      "action": "密切跟踪流动性窗口和监管表态，准备政策工具预案。",
+      "contagion_risk": "high"
+    },
+    "T1": {
+      "confidence": 81,
+      "verdict": "市场已进入警戒",
+      "prediction": "股价暴跌和融资失败会让储户更快转向撤离，挤兑预期开始自我强化。",
+      "action": "立即评估紧急流动性支持和沟通框架，避免恐慌扩散。",
+      "contagion_risk": "high"
+    },
+    "T2": {
+      "confidence": 88,
+      "verdict": "传染开始加速",
+      "prediction": "VC 圈的提款建议会把局部危机推成广泛信心冲击，风险外溢明显。",
+      "action": "强化跨机构监测，推动监管协调并准备定向干预。",
+      "contagion_risk": "critical"
+    },
+    "T3": {
+      "confidence": 93,
+      "verdict": "系统性警报拉响",
+      "prediction": "四百多亿美元提款请求意味着常规处置已失效，监管必须快速接管。",
+      "action": "进入危机处置状态，准备接管、担保与市场安抚措施。",
+      "contagion_risk": "critical"
+    },
+    "T4": {
+      "confidence": 90,
+      "verdict": "救助窗口收紧",
+      "prediction": "买家退出和融资失败说明私人市场无法消化冲击，政策介入的必要性上升。",
+      "action": "推进应急工具与处置路径设计，确保周末前可执行。",
+      "contagion_risk": "critical"
+    },
+    "T5": {
+      "confidence": 95,
+      "verdict": "必须果断托底",
+      "prediction": "FDIC 接管是止血动作，但若不扩大担保范围，恐慌仍会向其他银行传导。",
+      "action": "同步发布明确的储户保护和流动性支持信号。",
+      "contagion_risk": "high"
+    },
+    "T6": {
+      "confidence": 86,
+      "verdict": "传染暂时受控",
+      "prediction": "联合声明和 BTFP 能缓和短期冲击，但区域银行体系的信心修复仍需时间。",
+      "action": "持续观察 First Republic 等受压机构，防止二次震荡。",
+      "contagion_risk": "medium"
+    }
+  },
+  "retail_depositor": {
+    "T0": {
+      "confidence": 68,
+      "verdict": "我开始不安了",
+      "prediction": "虽然新闻看起来还只是亏损，但大家会马上担心这家银行还能不能撑住。",
+      "action": "先查清自己的存款是否受保险保护，别急着跟风。",
+      "contagion_risk": "medium"
+    },
+    "T1": {
+      "confidence": 84,
+      "verdict": "我有点慌了",
+      "prediction": "股价大跌和融资失败会让我觉得事情不妙，排队取钱的人会越来越多。",
+      "action": "尽快核对账户余额和保险范围，保留现金流备用。",
+      "contagion_risk": "high"
+    },
+    "T2": {
+      "confidence": 91,
+      "verdict": "大家都在撤",
+      "prediction": "看到 VC 也建议提款后，我会判断这已经不是普通波动，而是信任崩塌。",
+      "action": "考虑把运营资金转到更稳的账户，并关注官方通知。",
+      "contagion_risk": "critical"
+    },
+    "T3": {
+      "confidence": 96,
+      "verdict": "这下真出事了",
+      "prediction": "超大额提款意味着银行几乎失去控制，普通储户只会更恐慌。",
+      "action": "立刻确认资金是否受保护，并避免在社交媒体上跟风传播恐慌。",
+      "contagion_risk": "critical"
+    },
+    "T4": {
+      "confidence": 89,
+      "verdict": "我等官方说法",
+      "prediction": "救助谈判失败会让我担心周一前还有别的银行也会出问题。",
+      "action": "保留流动性，等待监管和银行的正式说明。",
+      "contagion_risk": "high"
+    },
+    "T5": {
+      "confidence": 94,
+      "verdict": "终于有人接手",
+      "prediction": "FDIC 接管能暂时让我安心，但我还是会担心超额存款和连锁反应。",
+      "action": "查看保险覆盖情况，必要时分散账户以降低单点风险。",
+      "contagion_risk": "high"
+    },
+    "T6": {
+      "confidence": 77,
+      "verdict": "还是别太乐观",
+      "prediction": "联合声明会缓和情绪，但我会继续担心其他银行会不会被牵连。",
+      "action": "先观察市场和银行公告，再决定是否调整资金配置。",
+      "contagion_risk": "medium"
+    }
+  },
+  "short_seller": {
+    "T0": {
+      "confidence": 78,
+      "verdict": "机会开始出现",
+      "prediction": "SVB 的结构性脆弱已经暴露，区域银行和相关金融资产会先被市场重新定价。",
+      "action": "筛选高敞口标的，提前建立观察名单和对冲头寸。",
+      "contagion_risk": "high"
+    },
+    "T1": {
+      "confidence": 86,
+      "verdict": "空头逻辑成立",
+      "prediction": "暴跌和融资失败会让市场相信这不是孤立事件，空头会得到更多催化剂。",
+      "action": "加大对区域银行的跟踪，等待更强的传染信号。",
+      "contagion_risk": "high"
+    },
+    "T2": {
+      "confidence": 93,
+      "verdict": "传染在扩散",
+      "prediction": "提款建议外溢后，市场会开始交易更广泛的银行信任危机。",
+      "action": "优先布局对传染最敏感的金融股，并控制回撤。",
+      "contagion_risk": "critical"
+    },
+    "T3": {
+      "confidence": 97,
+      "verdict": "完美风暴形成",
+      "prediction": "超大额提款意味着市场已经从怀疑转向逃离，空头情绪会达到高点。",
+      "action": "锁定高波动窗口，严格分批止盈止损。",
+      "contagion_risk": "critical"
+    },
+    "T4": {
+      "confidence": 88,
+      "verdict": "救助也有限",
+      "prediction": "买家退出说明私人资本不愿接盘，市场会继续交易系统性风险。",
+      "action": "保持对冲力度，观察是否出现第二只鞋落地。",
+      "contagion_risk": "high"
+    },
+    "T5": {
+      "confidence": 82,
+      "verdict": "政策会压波动",
+      "prediction": "FDIC 接管会短线打压空头收益，但行业重估不会立刻结束。",
+      "action": "减少裸空暴露，转向相对价值和事件驱动策略。",
+      "contagion_risk": "medium"
+    },
+    "T6": {
+      "confidence": 74,
+      "verdict": "故事还没完",
+      "prediction": "联合声明会缓和市场，但银行板块的估值修复会非常分化。",
+      "action": "切换到更精细的标的筛选，等待次级传染机会。",
+      "contagion_risk": "medium"
+    }
+  }
+}

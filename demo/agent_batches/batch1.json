@@ -1,0 +1,155 @@
+{
+  "vc_partner": {
+    "T0": {
+      "confidence": 68,
+      "verdict": "先把现金安全锁住",
+      "prediction": "SVB 的利率风险已经被市场低估，短期内会先引发风声，后续才会扩散到初创圈。",
+      "action": "立刻通知被投公司分散现金并准备提款。",
+      "contagion_risk": "high"
+    },
+    "T1": {
+      "confidence": 82,
+      "verdict": "这不是噪音，是警报",
+      "prediction": "股价暴跌和融资失败会迅速把恐慌传导到硅谷创始人群体，提款会开始加速。",
+      "action": "要求 portfolio 全部核查 SVB 暴露并启动转移。",
+      "contagion_risk": "critical"
+    },
+    "T2": {
+      "confidence": 94,
+      "verdict": "现在就该全额撤离",
+      "prediction": "VC 圈层建议提款会成为转折点，信息扩散后会出现连锁挤兑。",
+      "action": "推动所有被投公司当天内转走大额存款。",
+      "contagion_risk": "critical"
+    },
+    "T3": {
+      "confidence": 98,
+      "verdict": "系统已经失控了",
+      "prediction": "42B 提款请求意味着银行流动性事实破产，监管介入只是止血，不是修复。",
+      "action": "停止观望，按最坏情景准备工资和备份账户。",
+      "contagion_risk": "critical"
+    },
+    "T4": {
+      "confidence": 89,
+      "verdict": "别再赌买家出现",
+      "prediction": "融资和出售谈判失败后，SVB 已经只剩监管接管一条路，风险会继续外溢。",
+      "action": "把所有依赖单一银行的资金结构改掉。",
+      "contagion_risk": "high"
+    },
+    "T5": {
+      "confidence": 76,
+      "verdict": "接管只是后续开始",
+      "prediction": "FDIC 接管会缓解一部分储户恐慌，但创业公司和基金仍会重新审视银行对手风险。",
+      "action": "把这次事件写进风控清单和投后模板。",
+      "contagion_risk": "high"
+    },
+    "T6": {
+      "confidence": 61,
+      "verdict": "蔓延已从银行扩散",
+      "prediction": "Signature 的倒闭说明这不是单点事故，区域银行都会被重新定价。",
+      "action": "继续推动资金分散，避免再次押注单一银行。",
+      "contagion_risk": "medium"
+    }
+  },
+  "startup_cfo": {
+    "T0": {
+      "confidence": 52,
+      "verdict": "先别惊慌，先算账",
+      "prediction": "现在还不像全面危机，但利率冲击和资产处置风险值得立即复核。",
+      "action": "核对现金余额和下月 payroll 缺口。",
+      "contagion_risk": "medium"
+    },
+    "T1": {
+      "confidence": 71,
+      "verdict": "必须准备备用通道",
+      "prediction": "股价暴跌会让董事会和投资人开始逼问流动性安排，最迟今天要有备选方案。",
+      "action": "联系第二家银行并准备分批转账。",
+      "contagion_risk": "high"
+    },
+    "T2": {
+      "confidence": 88,
+      "verdict": "我现在就去提钱",
+      "prediction": "VC 圈的提款建议会迅速改变 CFO 行为，大家会从观望切换到执行。",
+      "action": "立即调拨工资账户到更安全的银行。",
+      "contagion_risk": "critical"
+    },
+    "T3": {
+      "confidence": 97,
+      "verdict": "今晚必须保发工资",
+      "prediction": "提款请求规模已经超出银行承受能力，晚一步都可能影响 payroll 和运营。",
+      "action": "锁定所有工资、税务和短期运营资金。",
+      "contagion_risk": "critical"
+    },
+    "T4": {
+      "confidence": 93,
+      "verdict": "买家退出很危险",
+      "prediction": "并购和融资同时失败意味着储户恢复信心的窗口在关闭，时间不站在我们这边。",
+      "action": "向董事会提交应急现金迁移方案。",
+      "contagion_risk": "critical"
+    },
+    "T5": {
+      "confidence": 86,
+      "verdict": "接管后也不能松手",
+      "prediction": "FDIC 接管会降低最坏尾部风险，但超额资金和业务连续性仍需单独管理。",
+      "action": "把超额现金与运营现金彻底分桶。",
+      "contagion_risk": "high"
+    },
+    "T6": {
+      "confidence": 66,
+      "verdict": "这会影响每家 CFO",
+      "prediction": "Signature 倒闭后，初创公司会系统性重做银行配置，单账户策略会被淘汰。",
+      "action": "建立多银行和短周期回款制度。",
+      "contagion_risk": "medium"
+    }
+  },
+  "bank_analyst": {
+    "T0": {
+      "confidence": 64,
+      "verdict": "期限错配开始暴露",
+      "prediction": "SVB 的亏损更多反映资产久期问题，短期内是流动性压力，不一定立刻是资不抵债。",
+      "action": "重新估算存款稳定性和久期缺口。",
+      "contagion_risk": "medium"
+    },
+    "T1": {
+      "confidence": 79,
+      "verdict": "市场在重新定价",
+      "prediction": "股价暴跌和融资失败会让市场把银行基本面问题直接映射为系统性风险。",
+      "action": "下调目标价并提高存款外流假设。",
+      "contagion_risk": "high"
+    },
+    "T2": {
+      "confidence": 86,
+      "verdict": "传染风险明显上升",
+      "prediction": "VC 建议提款会把原本局部的流动性问题放大成同业情绪冲击。",
+      "action": "检查同类银行的集中存款和未实现亏损。",
+      "contagion_risk": "critical"
+    },
+    "T3": {
+      "confidence": 95,
+      "verdict": "流动性窗口已关闭",
+      "prediction": "42B 提款请求说明市场信心坍塌，监管接管几乎是唯一可执行方案。",
+      "action": "更新评级展望并准备连锁风险提示。",
+      "contagion_risk": "critical"
+    },
+    "T4": {
+      "confidence": 90,
+      "verdict": "买家退出属负面信号",
+      "prediction": "并购失败意味着市场无法通过私人资本吸收损失，银行股会继续承压。",
+      "action": "关注区域银行股和债券利差扩张。",
+      "contagion_risk": "high"
+    },
+    "T5": {
+      "confidence": 84,
+      "verdict": "监管接管但未止血",
+      "prediction": "FDIC 接管降低了破产混乱，但对同类银行的资产端压力并未结束。",
+      "action": "重新评估流动性覆盖率和未实现损失。",
+      "contagion_risk": "high"
+    },
+    "T6": {
+      "confidence": 73,
+      "verdict": "蔓延进入第二家银行",
+      "prediction": "Signature 的倒闭证明本轮冲击已从个体银行扩展到更广泛的区域银行板块。",
+      "action": "把传染路径写进下一轮风险模型。",
+      "contagion_risk": "medium"
+    }
+  }
+}

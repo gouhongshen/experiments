@@ -1,0 +1,155 @@
+{
+  "treasury_manager": {
+    "T0": {
+      "confidence": 78,
+      "verdict": "先收缩现金敞口",
+      "prediction": "SVB 的期限错配已经暴露，企业资金应尽快分散到多家银行。",
+      "action": "立即执行存款分散和支付账户重构，避免单点风险。",
+      "contagion_risk": "high"
+    },
+    "T1": {
+      "confidence": 86,
+      "verdict": "今天就转走一部分",
+      "prediction": "股价暴跌和融资失败会迅速放大客户恐慌，提款压力会继续上升。",
+      "action": "优先转出运营资金和下月工资款，保留最小工作余额。",
+      "contagion_risk": "critical"
+    },
+    "T2": {
+      "confidence": 92,
+      "verdict": "必须立刻全额转移",
+      "prediction": "Founders Fund 的建议会形成连锁反应，初创公司会开始集体提走存款。",
+      "action": "立刻通知财务和法务，按预案将核心现金迁出 SVB。",
+      "contagion_risk": "critical"
+    },
+    "T3": {
+      "confidence": 97,
+      "verdict": "现在只剩保命",
+      "prediction": "420 亿提款请求说明流动性已接近枯竭，最坏情况已经不是假设。",
+      "action": "冻结非必要支出，确认所有账户余额和转账路径。",
+      "contagion_risk": "critical"
+    },
+    "T4": {
+      "confidence": 95,
+      "verdict": "别再赌救援了",
+      "prediction": "融资失败后，任何延迟都会把企业现金管理推向被动挤兑。",
+      "action": "继续向更安全的主银行迁移资金，并通知团队工资风险。",
+      "contagion_risk": "high"
+    },
+    "T5": {
+      "confidence": 90,
+      "verdict": "先确认保险覆盖",
+      "prediction": "FDIC 接管后，短期目标是核对保险额度和超额资金回收节奏。",
+      "action": "统计受保险保护金额，准备向监管和承接银行提交材料。",
+      "contagion_risk": "high"
+    },
+    "T6": {
+      "confidence": 72,
+      "verdict": "先稳住再复盘",
+      "prediction": "全额保护会缓解当下恐慌，但企业的银行集中度问题不会自动消失。",
+      "action": "把这次事件写入司库政策，要求常态化分散存款。",
+      "contagion_risk": "medium"
+    }
+  },
+  "insurance_exec": {
+    "T0": {
+      "confidence": 66,
+      "verdict": "这是信用事件前夜",
+      "prediction": "SVB 的资产端压力会迅速传导到金融股估值，但暂时仍是局部问题。",
+      "action": "降低银行债和区域银行的敏感敞口，提升流动性缓冲。",
+      "contagion_risk": "medium"
+    },
+    "T1": {
+      "confidence": 74,
+      "verdict": "市场会重新定价",
+      "prediction": "股价暴跌和融资失败会触发外部对银行资产质量的系统性怀疑。",
+      "action": "重新审视久期风险和未实现亏损，更新压力测试参数。",
+      "contagion_risk": "high"
+    },
+    "T2": {
+      "confidence": 81,
+      "verdict": "传染窗口已经打开",
+      "prediction": "科技圈的提款建议会让市场把单一银行问题升级为同类机构风险。",
+      "action": "提高对区域银行和保险组合中银行债的风险折价。",
+      "contagion_risk": "critical"
+    },
+    "T3": {
+      "confidence": 88,
+      "verdict": "流动性危机成形了",
+      "prediction": "420 亿提款会把资产负债错配暴露得非常彻底，监管必须介入。",
+      "action": "收紧对银行股和次级信用的配置，准备对外部问询口径。",
+      "contagion_risk": "critical"
+    },
+    "T4": {
+      "confidence": 84,
+      "verdict": "救援失败是拐点",
+      "prediction": "买家退出意味着风险不再是单一机构事件，而是市场信心问题。",
+      "action": "把尾部风险情景纳入资本计划，减少短期波动资产暴露。",
+      "contagion_risk": "critical"
+    },
+    "T5": {
+      "confidence": 91,
+      "verdict": "监管接管是必要的",
+      "prediction": "FDIC 接管会止血，但也会迫使市场重新评估所有区域银行。",
+      "action": "同步评估再保险、金融债和存放资产的二阶影响。",
+      "contagion_risk": "high"
+    },
+    "T6": {
+      "confidence": 69,
+      "verdict": "短期稳定，长期重估",
+      "prediction": "全额担保和 BTFP 会稳定情绪，但银行体系的期限错配仍需重估。",
+      "action": "维持防守仓位，同时观察 First Republic 等后续连锁反应。",
+      "contagion_risk": "medium"
+    }
+  },
+  "crypto_advocate": {
+    "T0": {
+      "confidence": 61,
+      "verdict": "传统银行先露怯了",
+      "prediction": "SVB 的脆弱性会成为去中心化金融最好的宣传案例。",
+      "action": "对外强调自托管和稳定币通道的抗风险优势。",
+      "contagion_risk": "medium"
+    },
+    "T1": {
+      "confidence": 73,
+      "verdict": "信任正在裂开",
+      "prediction": "股价暴跌说明市场已经开始怀疑中心化银行的可靠性。",
+      "action": "准备发布面向创始人的资金避险建议和加密替代方案。",
+      "contagion_risk": "high"
+    },
+    "T2": {
+      "confidence": 88,
+      "verdict": "这就是采用时刻",
+      "prediction": "提款建议会把恐慌扩散到整个科技圈，稳定币和链上结算会被重新审视。",
+      "action": "借势推动企业采用多轨资金方案，包括链上现金管理。",
+      "contagion_risk": "critical"
+    },
+    "T3": {
+      "confidence": 94,
+      "verdict": "中心化风险已爆表",
+      "prediction": "420 亿提款证明传统银行在压力下会比市场想象得更脆弱。",
+      "action": "强化自托管叙事，同时提醒用户避免单一银行依赖。",
+      "contagion_risk": "critical"
+    },
+    "T4": {
+      "confidence": 89,
+      "verdict": "救不了旧模式了",
+      "prediction": "融资失败会让更多人意识到，流动性安全不能完全交给银行。",
+      "action": "扩大对稳定币清算和链上储备方案的传播。",
+      "contagion_risk": "high"
+    },
+    "T5": {
+      "confidence": 83,
+      "verdict": "监管终究会兜底",
+      "prediction": "FDIC 接管能止住恐慌，但也说明系统最终还是靠中心化权力收场。",
+      "action": "强调去中心化工具的长期价值，而不是短期投机。",
+      "contagion_risk": "high"
+    },
+    "T6": {
+      "confidence": 67,
+      "verdict": "叙事开始分化",
+      "prediction": "全额担保会暂时缓和市场，但也会让更多人寻找非银行替代品。",
+      "action": "把这次危机整理成教育材料，面向初创团队持续传播。",
+      "contagion_risk": "medium"
+    }
+  }
+}

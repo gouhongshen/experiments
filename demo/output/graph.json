@@ -1,0 +1,2470 @@
+{
+  "title": "SVB 危机回放 · 共识簇演化图",
+  "subtitle": "先看见 12 个角色各自发言，再看见他们被吸入共识点，最后看见点与点之间的人群迁移、回滚和收束。",
+  "steps": [
+    {
+      "id": "T0",
+      "real_time": "2023-03-08 16:00",
+      "label": "共同看到亏损公告",
+      "note": "同样的信息入口，不同的人设开始给出不同的口气与信心。",
+      "actions": [
+        "同一组公告与新闻进入系统",
+        "12 个角色开始围绕同一原点发言"
+      ],
+      "clusters": [
+        {
+          "id": "T0_origin",
+          "cluster_key": "origin",
+          "title": "共同起点",
+          "summary": "所有人基于同一批公告、新闻与市场数据开始讨论。",
+          "risk": "medium",
+          "avg_confidence": 68.9,
+          "members": [
+            "vc_partner",
+            "startup_cfo",
+            "bank_analyst",
+            "fed_watcher",
+            "retail_depositor",
+            "short_seller",
+            "fintech_founder",
+            "media_reporter",
+            "credit_analyst",
+            "treasury_manager",
+            "insurance_exec",
+            "crypto_advocate"
+          ],
+          "member_names": [
+            "硅谷VC合伙人",
+            "科技初创CFO",
+            "华尔街银行分析师",
+            "美联储政策观察者",
+            "普通储户",
+            "做空对冲基金经理",
+            "Fintech创始人",
+            "科技财经记者",
+            "信用评级分析师",
+            "企业司库主管",
+            "保险公司高管",
+            "加密货币倡导者"
+          ],
+          "voices": [
+            {
+              "agent_id": "credit_analyst",
+              "agent": "信用评级分析师",
+              "verdict": "期限错配暴露了",
+              "prediction": "债券亏损说明资产端压力上升，但真正的风险还在存款集中度和流动性覆盖率。",
+              "action": "重新评估 LCR、未实现亏损和存款结构。",
+              "confidence": 84,
+              "risk": "medium"
+            },
+            {
+              "agent_id": "short_seller",
+              "agent": "做空对冲基金经理",
+              "verdict": "机会开始出现",
+              "prediction": "SVB 的结构性脆弱已经暴露，区域银行和相关金融资产会先被市场重新定价。",
+              "action": "筛选高敞口标的，提前建立观察名单和对冲头寸。",
+              "confidence": 78,
+              "risk": "high"
+            },
+            {
+              "agent_id": "treasury_manager",
+              "agent": "企业司库主管",
+              "verdict": "先收缩现金敞口",
+              "prediction": "SVB 的期限错配已经暴露，企业资金应尽快分散到多家银行。",
+              "action": "立即执行存款分散和支付账户重构，避免单点风险。",
+              "confidence": 78,
+              "risk": "high"
+            },
+            {
+              "agent_id": "fed_watcher",
+              "agent": "美联储政策观察者",
+              "verdict": "风险已显性化",
+              "prediction": "SVB 的期限错配和存款集中度问题会迅速放大市场对地区银行的担忧。",
+              "action": "密切跟踪流动性窗口和监管表态，准备政策工具预案。",
+              "confidence": 72,
+              "risk": "high"
+            },
+            {
+              "agent_id": "fintech_founder",
+              "agent": "Fintech创始人",
+              "verdict": "先保命，现金第一",
+              "prediction": "SVB 的资产负债错配已经暴露，接下来科技公司会迅速重审存款配置。",
+              "action": "立刻盘点现金，启动多银行分散和应急发薪方案。",
+              "confidence": 72,
+              "risk": "medium"
+            },
+            {
+              "agent_id": "vc_partner",
+              "agent": "硅谷VC合伙人",
+              "verdict": "先把现金安全锁住",
+              "prediction": "SVB 的利率风险已经被市场低估，短期内会先引发风声，后续才会扩散到初创圈。",
+              "action": "立刻通知被投公司分散现金并准备提款。",
+              "confidence": 68,
+              "risk": "high"
+            },
+            {
+              "agent_id": "retail_depositor",
+              "agent": "普通储户",
+              "verdict": "我开始不安了",
+              "prediction": "虽然新闻看起来还只是亏损，但大家会马上担心这家银行还能不能撑住。",
+              "action": "先查清自己的存款是否受保险保护，别急着跟风。",
+              "confidence": 68,
+              "risk": "medium"
+            },
+            {
+              "agent_id": "insurance_exec",
+              "agent": "保险公司高管",
+              "verdict": "这是信用事件前夜",
+              "prediction": "SVB 的资产端压力会迅速传导到金融股估值，但暂时仍是局部问题。",
+              "action": "降低银行债和区域银行的敏感敞口，提升流动性缓冲。",
+              "confidence": 66,
+              "risk": "medium"
+            },
+            {
+              "agent_id": "bank_analyst",
+              "agent": "华尔街银行分析师",
+              "verdict": "期限错配开始暴露",
+              "prediction": "SVB 的亏损更多反映资产久期问题，短期内是流动性压力，不一定立刻是资不抵债。",
+              "action": "重新估算存款稳定性和久期缺口。",
+              "confidence": 64,
+              "risk": "medium"
+            },
+            {
+              "agent_id": "media_reporter",
+              "agent": "科技财经记者",
+              "verdict": "这会变成故事",
+              "prediction": "市场先看到亏损，媒体随后会把它包装成利率冲击下的银行脆弱性案例。",
+              "action": "开始追踪信息源，锁定高管、投资人和监管者的叙事变化。",
+              "confidence": 64,
+              "risk": "medium"
+            },
+            {
+              "agent_id": "crypto_advocate",
+              "agent": "加密货币倡导者",
+              "verdict": "传统银行先露怯了",
+              "prediction": "SVB 的脆弱性会成为去中心化金融最好的宣传案例。",
+              "action": "对外强调自托管和稳定币通道的抗风险优势。",
+              "confidence": 61,
+              "risk": "medium"
+            },
+            {
+              "agent_id": "startup_cfo",
+              "agent": "科技初创CFO",
+              "verdict": "先别惊慌，先算账",
+              "prediction": "现在还不像全面危机，但利率冲击和资产处置风险值得立即复核。",
+              "action": "核对现金余额和下月 payroll 缺口。",
+              "confidence": 52,
+              "risk": "medium"
+            }
+          ]
+        }
+      ],
+      "voices": [
+        {
+          "agent_id": "credit_analyst",
+          "agent": "信用评级分析师",
+          "confidence": 84,
+          "verdict": "期限错配暴露了",
+          "prediction": "债券亏损说明资产端压力上升，但真正的风险还在存款集中度和流动性覆盖率。",
+          "action": "重新评估 LCR、未实现亏损和存款结构。",
+          "contagion_risk": "medium"
+        },
+        {
+          "agent_id": "short_seller",
+          "agent": "做空对冲基金经理",
+          "confidence": 78,
+          "verdict": "机会开始出现",
+          "prediction": "SVB 的结构性脆弱已经暴露，区域银行和相关金融资产会先被市场重新定价。",
+          "action": "筛选高敞口标的，提前建立观察名单和对冲头寸。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "treasury_manager",
+          "agent": "企业司库主管",
+          "confidence": 78,
+          "verdict": "先收缩现金敞口",
+          "prediction": "SVB 的期限错配已经暴露，企业资金应尽快分散到多家银行。",
+          "action": "立即执行存款分散和支付账户重构，避免单点风险。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "fed_watcher",
+          "agent": "美联储政策观察者",
+          "confidence": 72,
+          "verdict": "风险已显性化",
+          "prediction": "SVB 的期限错配和存款集中度问题会迅速放大市场对地区银行的担忧。",
+          "action": "密切跟踪流动性窗口和监管表态，准备政策工具预案。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "fintech_founder",
+          "agent": "Fintech创始人",
+          "confidence": 72,
+          "verdict": "先保命，现金第一",
+          "prediction": "SVB 的资产负债错配已经暴露，接下来科技公司会迅速重审存款配置。",
+          "action": "立刻盘点现金，启动多银行分散和应急发薪方案。",
+          "contagion_risk": "medium"
+        },
+        {
+          "agent_id": "vc_partner",
+          "agent": "硅谷VC合伙人",
+          "confidence": 68,
+          "verdict": "先把现金安全锁住",
+          "prediction": "SVB 的利率风险已经被市场低估，短期内会先引发风声，后续才会扩散到初创圈。",
+          "action": "立刻通知被投公司分散现金并准备提款。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "retail_depositor",
+          "agent": "普通储户",
+          "confidence": 68,
+          "verdict": "我开始不安了",
+          "prediction": "虽然新闻看起来还只是亏损，但大家会马上担心这家银行还能不能撑住。",
+          "action": "先查清自己的存款是否受保险保护，别急着跟风。",
+          "contagion_risk": "medium"
+        },
+        {
+          "agent_id": "insurance_exec",
+          "agent": "保险公司高管",
+          "confidence": 66,
+          "verdict": "这是信用事件前夜",
+          "prediction": "SVB 的资产端压力会迅速传导到金融股估值，但暂时仍是局部问题。",
+          "action": "降低银行债和区域银行的敏感敞口，提升流动性缓冲。",
+          "contagion_risk": "medium"
+        },
+        {
+          "agent_id": "bank_analyst",
+          "agent": "华尔街银行分析师",
+          "confidence": 64,
+          "verdict": "期限错配开始暴露",
+          "prediction": "SVB 的亏损更多反映资产久期问题，短期内是流动性压力，不一定立刻是资不抵债。",
+          "action": "重新估算存款稳定性和久期缺口。",
+          "contagion_risk": "medium"
+        },
+        {
+          "agent_id": "media_reporter",
+          "agent": "科技财经记者",
+          "confidence": 64,
+          "verdict": "这会变成故事",
+          "prediction": "市场先看到亏损，媒体随后会把它包装成利率冲击下的银行脆弱性案例。",
+          "action": "开始追踪信息源，锁定高管、投资人和监管者的叙事变化。",
+          "contagion_risk": "medium"
+        },
+        {
+          "agent_id": "crypto_advocate",
+          "agent": "加密货币倡导者",
+          "confidence": 61,
+          "verdict": "传统银行先露怯了",
+          "prediction": "SVB 的脆弱性会成为去中心化金融最好的宣传案例。",
+          "action": "对外强调自托管和稳定币通道的抗风险优势。",
+          "contagion_risk": "medium"
+        },
+        {
+          "agent_id": "startup_cfo",
+          "agent": "科技初创CFO",
+          "confidence": 52,
+          "verdict": "先别惊慌，先算账",
+          "prediction": "现在还不像全面危机，但利率冲击和资产处置风险值得立即复核。",
+          "action": "核对现金余额和下月 payroll 缺口。",
+          "contagion_risk": "medium"
+        }
+      ],
+      "transitions_in": []
+    },
+    {
+      "id": "T1",
+      "real_time": "2023-03-09 09:30",
+      "label": "股价暴跌，第一次分营",
+      "note": "第一次可视化分营出现：保命、核查、等监管。",
+      "actions": [
+        "原点被拉开成 3 个小群体共识点",
+        "每个点开始形成自己的短期解释框架"
+      ],
+      "clusters": [
+        {
+          "id": "T1_run_now",
+          "cluster_key": "run_now",
+          "title": "立刻提款派",
+          "summary": "先保住现金，关系以后再修复。",
+          "risk": "high",
+          "avg_confidence": 81.8,
+          "members": [
+            "vc_partner",
+            "startup_cfo",
+            "retail_depositor",
+            "fintech_founder",
+            "short_seller"
+          ],
+          "member_names": [
+            "硅谷VC合伙人",
+            "科技初创CFO",
+            "普通储户",
+            "Fintech创始人",
+            "做空对冲基金经理"
+          ],
+          "voices": [
+            {
+              "agent_id": "fintech_founder",
+              "agent": "Fintech创始人",
+              "verdict": "情况已经失控",
+              "prediction": "股价暴跌会把恐慌传导到初创公司财务负责人，提款会在数小时内加速。",
+              "action": "马上通知财务团队和投资人，执行资金迁移。",
+              "confidence": 86,
+              "risk": "high"
+            },
+            {
+              "agent_id": "short_seller",
+              "agent": "做空对冲基金经理",
+              "verdict": "空头逻辑成立",
+              "prediction": "暴跌和融资失败会让市场相信这不是孤立事件，空头会得到更多催化剂。",
+              "action": "加大对区域银行的跟踪，等待更强的传染信号。",
+              "confidence": 86,
+              "risk": "high"
+            },
+            {
+              "agent_id": "retail_depositor",
+              "agent": "普通储户",
+              "verdict": "我有点慌了",
+              "prediction": "股价大跌和融资失败会让我觉得事情不妙，排队取钱的人会越来越多。",
+              "action": "尽快核对账户余额和保险范围，保留现金流备用。",
+              "confidence": 84,
+              "risk": "high"
+            },
+            {
+              "agent_id": "vc_partner",
+              "agent": "硅谷VC合伙人",
+              "verdict": "这不是噪音，是警报",
+              "prediction": "股价暴跌和融资失败会迅速把恐慌传导到硅谷创始人群体，提款会开始加速。",
+              "action": "要求 portfolio 全部核查 SVB 暴露并启动转移。",
+              "confidence": 82,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "startup_cfo",
+              "agent": "科技初创CFO",
+              "verdict": "必须准备备用通道",
+              "prediction": "股价暴跌会让董事会和投资人开始逼问流动性安排，最迟今天要有备选方案。",
+              "action": "联系第二家银行并准备分批转账。",
+              "confidence": 71,
+              "risk": "high"
+            }
+          ]
+        },
+        {
+          "id": "T1_balance_sheet",
+          "cluster_key": "balance_sheet",
+          "title": "表内核查派",
+          "summary": "先看资产负债表与监管处置窗口。",
+          "risk": "high",
+          "avg_confidence": 82.2,
+          "members": [
+            "bank_analyst",
+            "credit_analyst",
+            "treasury_manager",
+            "insurance_exec"
+          ],
+          "member_names": [
+            "华尔街银行分析师",
+            "信用评级分析师",
+            "企业司库主管",
+            "保险公司高管"
+          ],
+          "voices": [
+            {
+              "agent_id": "credit_analyst",
+              "agent": "信用评级分析师",
+              "verdict": "资本缓冲被侵蚀",
+              "prediction": "股价暴跌与融资失败会放大市场对资产质量的担忧，评级压力会上升。",
+              "action": "下调观察名单优先级，准备更新评级假设。",
+              "confidence": 90,
+              "risk": "high"
+            },
+            {
+              "agent_id": "treasury_manager",
+              "agent": "企业司库主管",
+              "verdict": "今天就转走一部分",
+              "prediction": "股价暴跌和融资失败会迅速放大客户恐慌，提款压力会继续上升。",
+              "action": "优先转出运营资金和下月工资款，保留最小工作余额。",
+              "confidence": 86,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "bank_analyst",
+              "agent": "华尔街银行分析师",
+              "verdict": "市场在重新定价",
+              "prediction": "股价暴跌和融资失败会让市场把银行基本面问题直接映射为系统性风险。",
+              "action": "下调目标价并提高存款外流假设。",
+              "confidence": 79,
+              "risk": "high"
+            },
+            {
+              "agent_id": "insurance_exec",
+              "agent": "保险公司高管",
+              "verdict": "市场会重新定价",
+              "prediction": "股价暴跌和融资失败会触发外部对银行资产质量的系统性怀疑。",
+              "action": "重新审视久期风险和未实现亏损，更新压力测试参数。",
+              "confidence": 74,
+              "risk": "high"
+            }
+          ]
+        },
+        {
+          "id": "T1_policy_narrative",
+          "cluster_key": "policy_narrative",
+          "title": "政策与叙事派",
+          "summary": "关注监管节奏、舆情扩散与替代叙事。",
+          "risk": "high",
+          "avg_confidence": 77,
+          "members": [
+            "fed_watcher",
+            "media_reporter",
+            "crypto_advocate"
+          ],
+          "member_names": [
+            "美联储政策观察者",
+            "科技财经记者",
+            "加密货币倡导者"
+          ],
+          "voices": [
+            {
+              "agent_id": "fed_watcher",
+              "agent": "美联储政策观察者",
+              "verdict": "市场已进入警戒",
+              "prediction": "股价暴跌和融资失败会让储户更快转向撤离，挤兑预期开始自我强化。",
+              "action": "立即评估紧急流动性支持和沟通框架，避免恐慌扩散。",
+              "confidence": 81,
+              "risk": "high"
+            },
+            {
+              "agent_id": "media_reporter",
+              "agent": "科技财经记者",
+              "verdict": "叙事开始失控",
+              "prediction": "股价暴跌和评级下调会给媒体提供明确标题，危机将从财务新闻变成公共议题。",
+              "action": "快速整理时间线，准备一版事实核查稿。",
+              "confidence": 77,
+              "risk": "high"
+            },
+            {
+              "agent_id": "crypto_advocate",
+              "agent": "加密货币倡导者",
+              "verdict": "信任正在裂开",
+              "prediction": "股价暴跌说明市场已经开始怀疑中心化银行的可靠性。",
+              "action": "准备发布面向创始人的资金避险建议和加密替代方案。",
+              "confidence": 73,
+              "risk": "high"
+            }
+          ]
+        }
+      ],
+      "voices": [
+        {
+          "agent_id": "credit_analyst",
+          "agent": "信用评级分析师",
+          "confidence": 90,
+          "verdict": "资本缓冲被侵蚀",
+          "prediction": "股价暴跌与融资失败会放大市场对资产质量的担忧，评级压力会上升。",
+          "action": "下调观察名单优先级，准备更新评级假设。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "short_seller",
+          "agent": "做空对冲基金经理",
+          "confidence": 86,
+          "verdict": "空头逻辑成立",
+          "prediction": "暴跌和融资失败会让市场相信这不是孤立事件，空头会得到更多催化剂。",
+          "action": "加大对区域银行的跟踪，等待更强的传染信号。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "fintech_founder",
+          "agent": "Fintech创始人",
+          "confidence": 86,
+          "verdict": "情况已经失控",
+          "prediction": "股价暴跌会把恐慌传导到初创公司财务负责人，提款会在数小时内加速。",
+          "action": "马上通知财务团队和投资人，执行资金迁移。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "treasury_manager",
+          "agent": "企业司库主管",
+          "confidence": 86,
+          "verdict": "今天就转走一部分",
+          "prediction": "股价暴跌和融资失败会迅速放大客户恐慌，提款压力会继续上升。",
+          "action": "优先转出运营资金和下月工资款，保留最小工作余额。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "retail_depositor",
+          "agent": "普通储户",
+          "confidence": 84,
+          "verdict": "我有点慌了",
+          "prediction": "股价大跌和融资失败会让我觉得事情不妙，排队取钱的人会越来越多。",
+          "action": "尽快核对账户余额和保险范围，保留现金流备用。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "vc_partner",
+          "agent": "硅谷VC合伙人",
+          "confidence": 82,
+          "verdict": "这不是噪音，是警报",
+          "prediction": "股价暴跌和融资失败会迅速把恐慌传导到硅谷创始人群体，提款会开始加速。",
+          "action": "要求 portfolio 全部核查 SVB 暴露并启动转移。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "fed_watcher",
+          "agent": "美联储政策观察者",
+          "confidence": 81,
+          "verdict": "市场已进入警戒",
+          "prediction": "股价暴跌和融资失败会让储户更快转向撤离，挤兑预期开始自我强化。",
+          "action": "立即评估紧急流动性支持和沟通框架，避免恐慌扩散。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "bank_analyst",
+          "agent": "华尔街银行分析师",
+          "confidence": 79,
+          "verdict": "市场在重新定价",
+          "prediction": "股价暴跌和融资失败会让市场把银行基本面问题直接映射为系统性风险。",
+          "action": "下调目标价并提高存款外流假设。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "media_reporter",
+          "agent": "科技财经记者",
+          "confidence": 77,
+          "verdict": "叙事开始失控",
+          "prediction": "股价暴跌和评级下调会给媒体提供明确标题，危机将从财务新闻变成公共议题。",
+          "action": "快速整理时间线，准备一版事实核查稿。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "insurance_exec",
+          "agent": "保险公司高管",
+          "confidence": 74,
+          "verdict": "市场会重新定价",
+          "prediction": "股价暴跌和融资失败会触发外部对银行资产质量的系统性怀疑。",
+          "action": "重新审视久期风险和未实现亏损，更新压力测试参数。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "crypto_advocate",
+          "agent": "加密货币倡导者",
+          "confidence": 73,
+          "verdict": "信任正在裂开",
+          "prediction": "股价暴跌说明市场已经开始怀疑中心化银行的可靠性。",
+          "action": "准备发布面向创始人的资金避险建议和加密替代方案。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "startup_cfo",
+          "agent": "科技初创CFO",
+          "confidence": 71,
+          "verdict": "必须准备备用通道",
+          "prediction": "股价暴跌会让董事会和投资人开始逼问流动性安排，最迟今天要有备选方案。",
+          "action": "联系第二家银行并准备分批转账。",
+          "contagion_risk": "high"
+        }
+      ],
+      "transitions_in": [
+        {
+          "from": "T0_origin",
+          "to": "T1_run_now",
+          "count": 5,
+          "agents": [
+            "vc_partner",
+            "startup_cfo",
+            "retail_depositor",
+            "short_seller",
+            "fintech_founder"
+          ],
+          "agent_names": [
+            "硅谷VC合伙人",
+            "科技初创CFO",
+            "普通储户",
+            "做空对冲基金经理",
+            "Fintech创始人"
+          ]
+        },
+        {
+          "from": "T0_origin",
+          "to": "T1_balance_sheet",
+          "count": 4,
+          "agents": [
+            "bank_analyst",
+            "credit_analyst",
+            "treasury_manager",
+            "insurance_exec"
+          ],
+          "agent_names": [
+            "华尔街银行分析师",
+            "信用评级分析师",
+            "企业司库主管",
+            "保险公司高管"
+          ]
+        },
+        {
+          "from": "T0_origin",
+          "to": "T1_policy_narrative",
+          "count": 3,
+          "agents": [
+            "fed_watcher",
+            "media_reporter",
+            "crypto_advocate"
+          ],
+          "agent_names": [
+            "美联储政策观察者",
+            "科技财经记者",
+            "加密货币倡导者"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "T2",
+      "real_time": "2023-03-09 15:00",
+      "label": "VC 提款建议，第二次重组",
+      "note": "这一步是“从一个原点连到多个不同的点”最明显的时刻。",
+      "actions": [
+        "有人流入已经存在的点",
+        "新的‘叙事传染派’点被单独看见"
+      ],
+      "clusters": [
+        {
+          "id": "T2_full_withdrawal",
+          "cluster_key": "full_withdrawal",
+          "title": "全额撤离派",
+          "summary": "Founders Fund 的动作让撤离成为默认选项。",
+          "risk": "critical",
+          "avg_confidence": 91.8,
+          "members": [
+            "vc_partner",
+            "startup_cfo",
+            "retail_depositor",
+            "fintech_founder",
+            "treasury_manager",
+            "short_seller"
+          ],
+          "member_names": [
+            "硅谷VC合伙人",
+            "科技初创CFO",
+            "普通储户",
+            "Fintech创始人",
+            "企业司库主管",
+            "做空对冲基金经理"
+          ],
+          "voices": [
+            {
+              "agent_id": "vc_partner",
+              "agent": "硅谷VC合伙人",
+              "verdict": "现在就该全额撤离",
+              "prediction": "VC 圈层建议提款会成为转折点，信息扩散后会出现连锁挤兑。",
+              "action": "推动所有被投公司当天内转走大额存款。",
+              "confidence": 94,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "fintech_founder",
+              "agent": "Fintech创始人",
+              "verdict": "全员转账，别等了",
+              "prediction": "VC 圈的提款建议会变成群体行动，下午会出现明显挤兑潮。",
+              "action": "将工资账户和运营账户分开，优先转走高风险余额。",
+              "confidence": 93,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "short_seller",
+              "agent": "做空对冲基金经理",
+              "verdict": "传染在扩散",
+              "prediction": "提款建议外溢后，市场会开始交易更广泛的银行信任危机。",
+              "action": "优先布局对传染最敏感的金融股，并控制回撤。",
+              "confidence": 93,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "treasury_manager",
+              "agent": "企业司库主管",
+              "verdict": "必须立刻全额转移",
+              "prediction": "Founders Fund 的建议会形成连锁反应，初创公司会开始集体提走存款。",
+              "action": "立刻通知财务和法务，按预案将核心现金迁出 SVB。",
+              "confidence": 92,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "retail_depositor",
+              "agent": "普通储户",
+              "verdict": "大家都在撤",
+              "prediction": "看到 VC 也建议提款后，我会判断这已经不是普通波动，而是信任崩塌。",
+              "action": "考虑把运营资金转到更稳的账户，并关注官方通知。",
+              "confidence": 91,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "startup_cfo",
+              "agent": "科技初创CFO",
+              "verdict": "我现在就去提钱",
+              "prediction": "VC 圈的提款建议会迅速改变 CFO 行为，大家会从观望切换到执行。",
+              "action": "立即调拨工资账户到更安全的银行。",
+              "confidence": 88,
+              "risk": "critical"
+            }
+          ]
+        },
+        {
+          "id": "T2_backstop_watch",
+          "cluster_key": "backstop_watch",
+          "title": "观察托底派",
+          "summary": "仍押注监管会在系统性事件前介入。",
+          "risk": "critical",
+          "avg_confidence": 87.5,
+          "members": [
+            "bank_analyst",
+            "fed_watcher",
+            "credit_analyst",
+            "insurance_exec"
+          ],
+          "member_names": [
+            "华尔街银行分析师",
+            "美联储政策观察者",
+            "信用评级分析师",
+            "保险公司高管"
+          ],
+          "voices": [
+            {
+              "agent_id": "credit_analyst",
+              "agent": "信用评级分析师",
+              "verdict": "流动性风险成形",
+              "prediction": "提款建议一旦扩散，短期内的存款外流会超过常规流动性工具的覆盖能力。",
+              "action": "测算最坏情景下的现金缺口与处置路径。",
+              "confidence": 95,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "fed_watcher",
+              "agent": "美联储政策观察者",
+              "verdict": "传染开始加速",
+              "prediction": "VC 圈的提款建议会把局部危机推成广泛信心冲击，风险外溢明显。",
+              "action": "强化跨机构监测，推动监管协调并准备定向干预。",
+              "confidence": 88,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "bank_analyst",
+              "agent": "华尔街银行分析师",
+              "verdict": "传染风险明显上升",
+              "prediction": "VC 建议提款会把原本局部的流动性问题放大成同业情绪冲击。",
+              "action": "检查同类银行的集中存款和未实现亏损。",
+              "confidence": 86,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "insurance_exec",
+              "agent": "保险公司高管",
+              "verdict": "传染窗口已经打开",
+              "prediction": "科技圈的提款建议会让市场把单一银行问题升级为同类机构风险。",
+              "action": "提高对区域银行和保险组合中银行债的风险折价。",
+              "confidence": 81,
+              "risk": "critical"
+            }
+          ]
+        },
+        {
+          "id": "T2_narrative_contagion",
+          "cluster_key": "narrative_contagion",
+          "title": "叙事传染派",
+          "summary": "开始把事件视作信任危机与叙事裂缝。",
+          "risk": "critical",
+          "avg_confidence": 88,
+          "members": [
+            "media_reporter",
+            "crypto_advocate"
+          ],
+          "member_names": [
+            "科技财经记者",
+            "加密货币倡导者"
+          ],
+          "voices": [
+            {
+              "agent_id": "media_reporter",
+              "agent": "科技财经记者",
+              "verdict": "恐慌正在被放大",
+              "prediction": "社交平台的提款建议会让报道从观察转向放大，传播速度会超过官方回应。",
+              "action": "跟踪 X、VC 圈和初创 CFO 的公开发言。",
+              "confidence": 88,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "crypto_advocate",
+              "agent": "加密货币倡导者",
+              "verdict": "这就是采用时刻",
+              "prediction": "提款建议会把恐慌扩散到整个科技圈，稳定币和链上结算会被重新审视。",
+              "action": "借势推动企业采用多轨资金方案，包括链上现金管理。",
+              "confidence": 88,
+              "risk": "critical"
+            }
+          ]
+        }
+      ],
+      "voices": [
+        {
+          "agent_id": "credit_analyst",
+          "agent": "信用评级分析师",
+          "confidence": 95,
+          "verdict": "流动性风险成形",
+          "prediction": "提款建议一旦扩散，短期内的存款外流会超过常规流动性工具的覆盖能力。",
+          "action": "测算最坏情景下的现金缺口与处置路径。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "vc_partner",
+          "agent": "硅谷VC合伙人",
+          "confidence": 94,
+          "verdict": "现在就该全额撤离",
+          "prediction": "VC 圈层建议提款会成为转折点，信息扩散后会出现连锁挤兑。",
+          "action": "推动所有被投公司当天内转走大额存款。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "short_seller",
+          "agent": "做空对冲基金经理",
+          "confidence": 93,
+          "verdict": "传染在扩散",
+          "prediction": "提款建议外溢后，市场会开始交易更广泛的银行信任危机。",
+          "action": "优先布局对传染最敏感的金融股，并控制回撤。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "fintech_founder",
+          "agent": "Fintech创始人",
+          "confidence": 93,
+          "verdict": "全员转账，别等了",
+          "prediction": "VC 圈的提款建议会变成群体行动，下午会出现明显挤兑潮。",
+          "action": "将工资账户和运营账户分开，优先转走高风险余额。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "treasury_manager",
+          "agent": "企业司库主管",
+          "confidence": 92,
+          "verdict": "必须立刻全额转移",
+          "prediction": "Founders Fund 的建议会形成连锁反应，初创公司会开始集体提走存款。",
+          "action": "立刻通知财务和法务，按预案将核心现金迁出 SVB。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "retail_depositor",
+          "agent": "普通储户",
+          "confidence": 91,
+          "verdict": "大家都在撤",
+          "prediction": "看到 VC 也建议提款后，我会判断这已经不是普通波动，而是信任崩塌。",
+          "action": "考虑把运营资金转到更稳的账户，并关注官方通知。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "startup_cfo",
+          "agent": "科技初创CFO",
+          "confidence": 88,
+          "verdict": "我现在就去提钱",
+          "prediction": "VC 圈的提款建议会迅速改变 CFO 行为，大家会从观望切换到执行。",
+          "action": "立即调拨工资账户到更安全的银行。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "fed_watcher",
+          "agent": "美联储政策观察者",
+          "confidence": 88,
+          "verdict": "传染开始加速",
+          "prediction": "VC 圈的提款建议会把局部危机推成广泛信心冲击，风险外溢明显。",
+          "action": "强化跨机构监测，推动监管协调并准备定向干预。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "media_reporter",
+          "agent": "科技财经记者",
+          "confidence": 88,
+          "verdict": "恐慌正在被放大",
+          "prediction": "社交平台的提款建议会让报道从观察转向放大，传播速度会超过官方回应。",
+          "action": "跟踪 X、VC 圈和初创 CFO 的公开发言。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "crypto_advocate",
+          "agent": "加密货币倡导者",
+          "confidence": 88,
+          "verdict": "这就是采用时刻",
+          "prediction": "提款建议会把恐慌扩散到整个科技圈，稳定币和链上结算会被重新审视。",
+          "action": "借势推动企业采用多轨资金方案，包括链上现金管理。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "bank_analyst",
+          "agent": "华尔街银行分析师",
+          "confidence": 86,
+          "verdict": "传染风险明显上升",
+          "prediction": "VC 建议提款会把原本局部的流动性问题放大成同业情绪冲击。",
+          "action": "检查同类银行的集中存款和未实现亏损。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "insurance_exec",
+          "agent": "保险公司高管",
+          "confidence": 81,
+          "verdict": "传染窗口已经打开",
+          "prediction": "科技圈的提款建议会让市场把单一银行问题升级为同类机构风险。",
+          "action": "提高对区域银行和保险组合中银行债的风险折价。",
+          "contagion_risk": "critical"
+        }
+      ],
+      "transitions_in": [
+        {
+          "from": "T1_run_now",
+          "to": "T2_full_withdrawal",
+          "count": 5,
+          "agents": [
+            "vc_partner",
+            "startup_cfo",
+            "retail_depositor",
+            "short_seller",
+            "fintech_founder"
+          ],
+          "agent_names": [
+            "硅谷VC合伙人",
+            "科技初创CFO",
+            "普通储户",
+            "做空对冲基金经理",
+            "Fintech创始人"
+          ]
+        },
+        {
+          "from": "T1_balance_sheet",
+          "to": "T2_backstop_watch",
+          "count": 3,
+          "agents": [
+            "bank_analyst",
+            "credit_analyst",
+            "insurance_exec"
+          ],
+          "agent_names": [
+            "华尔街银行分析师",
+            "信用评级分析师",
+            "保险公司高管"
+          ]
+        },
+        {
+          "from": "T1_policy_narrative",
+          "to": "T2_backstop_watch",
+          "count": 1,
+          "agents": [
+            "fed_watcher"
+          ],
+          "agent_names": [
+            "美联储政策观察者"
+          ]
+        },
+        {
+          "from": "T1_policy_narrative",
+          "to": "T2_narrative_contagion",
+          "count": 2,
+          "agents": [
+            "media_reporter",
+            "crypto_advocate"
+          ],
+          "agent_names": [
+            "科技财经记者",
+            "加密货币倡导者"
+          ]
+        },
+        {
+          "from": "T1_balance_sheet",
+          "to": "T2_full_withdrawal",
+          "count": 1,
+          "agents": [
+            "treasury_manager"
+          ],
+          "agent_names": [
+            "企业司库主管"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "T3",
+      "real_time": "2023-03-09 18:00",
+      "label": "420 亿提款请求，阵营坍缩",
+      "note": "不是所有点都继续长大，很多人会并到更强的点上。",
+      "actions": [
+        "多个点向两个更强的共识点塌缩",
+        "分歧不再均匀，而是开始形成主导阵营"
+      ],
+      "clusters": [
+        {
+          "id": "T3_collapse_now",
+          "cluster_key": "collapse_now",
+          "title": "立即崩溃派",
+          "summary": "提款速度已超过银行自救速度，认为结局已定。",
+          "risk": "critical",
+          "avg_confidence": 96.1,
+          "members": [
+            "vc_partner",
+            "startup_cfo",
+            "retail_depositor",
+            "fintech_founder",
+            "short_seller",
+            "media_reporter",
+            "crypto_advocate"
+          ],
+          "member_names": [
+            "硅谷VC合伙人",
+            "科技初创CFO",
+            "普通储户",
+            "Fintech创始人",
+            "做空对冲基金经理",
+            "科技财经记者",
+            "加密货币倡导者"
+          ],
+          "voices": [
+            {
+              "agent_id": "vc_partner",
+              "agent": "硅谷VC合伙人",
+              "verdict": "系统已经失控了",
+              "prediction": "42B 提款请求意味着银行流动性事实破产，监管介入只是止血，不是修复。",
+              "action": "停止观望，按最坏情景准备工资和备份账户。",
+              "confidence": 98,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "startup_cfo",
+              "agent": "科技初创CFO",
+              "verdict": "今晚必须保发工资",
+              "prediction": "提款请求规模已经超出银行承受能力，晚一步都可能影响 payroll 和运营。",
+              "action": "锁定所有工资、税务和短期运营资金。",
+              "confidence": 97,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "fintech_founder",
+              "agent": "Fintech创始人",
+              "verdict": "今天就是生死线",
+              "prediction": "提款请求会压垮 SVB 的流动性，晚间将进入事实上的接管状态。",
+              "action": "冻结非必要支出，准备对外解释和应急发薪。",
+              "confidence": 97,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "short_seller",
+              "agent": "做空对冲基金经理",
+              "verdict": "完美风暴形成",
+              "prediction": "超大额提款意味着市场已经从怀疑转向逃离，空头情绪会达到高点。",
+              "action": "锁定高波动窗口，严格分批止盈止损。",
+              "confidence": 97,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "retail_depositor",
+              "agent": "普通储户",
+              "verdict": "这下真出事了",
+              "prediction": "超大额提款意味着银行几乎失去控制，普通储户只会更恐慌。",
+              "action": "立刻确认资金是否受保护，并避免在社交媒体上跟风传播恐慌。",
+              "confidence": 96,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "media_reporter",
+              "agent": "科技财经记者",
+              "verdict": "这已经是危机",
+              "prediction": "42B 提款请求会成为标志性画面，媒体会将其定义为现代银行挤兑样本。",
+              "action": "把现场采访和数据新闻同步推进，避免被单一来源带节奏。",
+              "confidence": 94,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "crypto_advocate",
+              "agent": "加密货币倡导者",
+              "verdict": "中心化风险已爆表",
+              "prediction": "420 亿提款证明传统银行在压力下会比市场想象得更脆弱。",
+              "action": "强化自托管叙事，同时提醒用户避免单一银行依赖。",
+              "confidence": 94,
+              "risk": "critical"
+            }
+          ]
+        },
+        {
+          "id": "T3_forced_resolution",
+          "cluster_key": "forced_resolution",
+          "title": "强制接管派",
+          "summary": "不再相信市场化救助，但认为监管会强制收束局面。",
+          "risk": "critical",
+          "avg_confidence": 94.2,
+          "members": [
+            "bank_analyst",
+            "fed_watcher",
+            "credit_analyst",
+            "treasury_manager",
+            "insurance_exec"
+          ],
+          "member_names": [
+            "华尔街银行分析师",
+            "美联储政策观察者",
+            "信用评级分析师",
+            "企业司库主管",
+            "保险公司高管"
+          ],
+          "voices": [
+            {
+              "agent_id": "credit_analyst",
+              "agent": "信用评级分析师",
+              "verdict": "已经进入挤兑",
+              "prediction": "42B 提款请求意味着银行的流动性防线失效，接管概率接近确定。",
+              "action": "将事件定性为系统性流动性冲击并更新行业风险面板。",
+              "confidence": 98,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "treasury_manager",
+              "agent": "企业司库主管",
+              "verdict": "现在只剩保命",
+              "prediction": "420 亿提款请求说明流动性已接近枯竭，最坏情况已经不是假设。",
+              "action": "冻结非必要支出，确认所有账户余额和转账路径。",
+              "confidence": 97,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "bank_analyst",
+              "agent": "华尔街银行分析师",
+              "verdict": "流动性窗口已关闭",
+              "prediction": "42B 提款请求说明市场信心坍塌，监管接管几乎是唯一可执行方案。",
+              "action": "更新评级展望并准备连锁风险提示。",
+              "confidence": 95,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "fed_watcher",
+              "agent": "美联储政策观察者",
+              "verdict": "系统性警报拉响",
+              "prediction": "四百多亿美元提款请求意味着常规处置已失效，监管必须快速接管。",
+              "action": "进入危机处置状态，准备接管、担保与市场安抚措施。",
+              "confidence": 93,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "insurance_exec",
+              "agent": "保险公司高管",
+              "verdict": "流动性危机成形了",
+              "prediction": "420 亿提款会把资产负债错配暴露得非常彻底，监管必须介入。",
+              "action": "收紧对银行股和次级信用的配置，准备对外部问询口径。",
+              "confidence": 88,
+              "risk": "critical"
+            }
+          ]
+        }
+      ],
+      "voices": [
+        {
+          "agent_id": "vc_partner",
+          "agent": "硅谷VC合伙人",
+          "confidence": 98,
+          "verdict": "系统已经失控了",
+          "prediction": "42B 提款请求意味着银行流动性事实破产，监管介入只是止血，不是修复。",
+          "action": "停止观望，按最坏情景准备工资和备份账户。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "credit_analyst",
+          "agent": "信用评级分析师",
+          "confidence": 98,
+          "verdict": "已经进入挤兑",
+          "prediction": "42B 提款请求意味着银行的流动性防线失效，接管概率接近确定。",
+          "action": "将事件定性为系统性流动性冲击并更新行业风险面板。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "startup_cfo",
+          "agent": "科技初创CFO",
+          "confidence": 97,
+          "verdict": "今晚必须保发工资",
+          "prediction": "提款请求规模已经超出银行承受能力，晚一步都可能影响 payroll 和运营。",
+          "action": "锁定所有工资、税务和短期运营资金。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "short_seller",
+          "agent": "做空对冲基金经理",
+          "confidence": 97,
+          "verdict": "完美风暴形成",
+          "prediction": "超大额提款意味着市场已经从怀疑转向逃离，空头情绪会达到高点。",
+          "action": "锁定高波动窗口，严格分批止盈止损。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "fintech_founder",
+          "agent": "Fintech创始人",
+          "confidence": 97,
+          "verdict": "今天就是生死线",
+          "prediction": "提款请求会压垮 SVB 的流动性，晚间将进入事实上的接管状态。",
+          "action": "冻结非必要支出，准备对外解释和应急发薪。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "treasury_manager",
+          "agent": "企业司库主管",
+          "confidence": 97,
+          "verdict": "现在只剩保命",
+          "prediction": "420 亿提款请求说明流动性已接近枯竭，最坏情况已经不是假设。",
+          "action": "冻结非必要支出，确认所有账户余额和转账路径。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "retail_depositor",
+          "agent": "普通储户",
+          "confidence": 96,
+          "verdict": "这下真出事了",
+          "prediction": "超大额提款意味着银行几乎失去控制，普通储户只会更恐慌。",
+          "action": "立刻确认资金是否受保护，并避免在社交媒体上跟风传播恐慌。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "bank_analyst",
+          "agent": "华尔街银行分析师",
+          "confidence": 95,
+          "verdict": "流动性窗口已关闭",
+          "prediction": "42B 提款请求说明市场信心坍塌，监管接管几乎是唯一可执行方案。",
+          "action": "更新评级展望并准备连锁风险提示。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "media_reporter",
+          "agent": "科技财经记者",
+          "confidence": 94,
+          "verdict": "这已经是危机",
+          "prediction": "42B 提款请求会成为标志性画面，媒体会将其定义为现代银行挤兑样本。",
+          "action": "把现场采访和数据新闻同步推进，避免被单一来源带节奏。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "crypto_advocate",
+          "agent": "加密货币倡导者",
+          "confidence": 94,
+          "verdict": "中心化风险已爆表",
+          "prediction": "420 亿提款证明传统银行在压力下会比市场想象得更脆弱。",
+          "action": "强化自托管叙事，同时提醒用户避免单一银行依赖。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "fed_watcher",
+          "agent": "美联储政策观察者",
+          "confidence": 93,
+          "verdict": "系统性警报拉响",
+          "prediction": "四百多亿美元提款请求意味着常规处置已失效，监管必须快速接管。",
+          "action": "进入危机处置状态，准备接管、担保与市场安抚措施。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "insurance_exec",
+          "agent": "保险公司高管",
+          "confidence": 88,
+          "verdict": "流动性危机成形了",
+          "prediction": "420 亿提款会把资产负债错配暴露得非常彻底，监管必须介入。",
+          "action": "收紧对银行股和次级信用的配置，准备对外部问询口径。",
+          "contagion_risk": "critical"
+        }
+      ],
+      "transitions_in": [
+        {
+          "from": "T2_full_withdrawal",
+          "to": "T3_collapse_now",
+          "count": 5,
+          "agents": [
+            "vc_partner",
+            "startup_cfo",
+            "retail_depositor",
+            "short_seller",
+            "fintech_founder"
+          ],
+          "agent_names": [
+            "硅谷VC合伙人",
+            "科技初创CFO",
+            "普通储户",
+            "做空对冲基金经理",
+            "Fintech创始人"
+          ]
+        },
+        {
+          "from": "T2_backstop_watch",
+          "to": "T3_forced_resolution",
+          "count": 4,
+          "agents": [
+            "bank_analyst",
+            "fed_watcher",
+            "credit_analyst",
+            "insurance_exec"
+          ],
+          "agent_names": [
+            "华尔街银行分析师",
+            "美联储政策观察者",
+            "信用评级分析师",
+            "保险公司高管"
+          ]
+        },
+        {
+          "from": "T2_narrative_contagion",
+          "to": "T3_collapse_now",
+          "count": 2,
+          "agents": [
+            "media_reporter",
+            "crypto_advocate"
+          ],
+          "agent_names": [
+            "科技财经记者",
+            "加密货币倡导者"
+          ]
+        },
+        {
+          "from": "T2_full_withdrawal",
+          "to": "T3_forced_resolution",
+          "count": 1,
+          "agents": [
+            "treasury_manager"
+          ],
+          "agent_names": [
+            "企业司库主管"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "T4",
+      "real_time": "2023-03-10 09:30",
+      "label": "救助失败，新节点产生",
+      "note": "这里有典型的新点出现，不只是旧点之间迁移。",
+      "actions": [
+        "出现新的‘系统性外溢派’点",
+        "发薪生存派从大阵营里单独析出"
+      ],
+      "clusters": [
+        {
+          "id": "T4_systemic_spillover",
+          "cluster_key": "systemic_spillover",
+          "title": "系统性外溢派",
+          "summary": "把 SVB 视作更大金融裂缝的起点。",
+          "risk": "critical",
+          "avg_confidence": 89.2,
+          "members": [
+            "short_seller",
+            "crypto_advocate",
+            "media_reporter",
+            "insurance_exec",
+            "fintech_founder"
+          ],
+          "member_names": [
+            "做空对冲基金经理",
+            "加密货币倡导者",
+            "科技财经记者",
+            "保险公司高管",
+            "Fintech创始人"
+          ],
+          "voices": [
+            {
+              "agent_id": "fintech_founder",
+              "agent": "Fintech创始人",
+              "verdict": "买家基本没戏了",
+              "prediction": "融资失败后，市场会默认这不是单一银行问题，而是初创生态的系统性风险。",
+              "action": "把现金管理切换到保守模式，延长 runway 优先级最高。",
+              "confidence": 95,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "media_reporter",
+              "agent": "科技财经记者",
+              "verdict": "买家退出很关键",
+              "prediction": "救助谈判失败会让报道重心转向监管失灵与市场信任崩塌。",
+              "action": "补充专家评论，解释流动性和资本不是一回事。",
+              "confidence": 90,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "crypto_advocate",
+              "agent": "加密货币倡导者",
+              "verdict": "救不了旧模式了",
+              "prediction": "融资失败会让更多人意识到，流动性安全不能完全交给银行。",
+              "action": "扩大对稳定币清算和链上储备方案的传播。",
+              "confidence": 89,
+              "risk": "high"
+            },
+            {
+              "agent_id": "short_seller",
+              "agent": "做空对冲基金经理",
+              "verdict": "救助也有限",
+              "prediction": "买家退出说明私人资本不愿接盘，市场会继续交易系统性风险。",
+              "action": "保持对冲力度，观察是否出现第二只鞋落地。",
+              "confidence": 88,
+              "risk": "high"
+            },
+            {
+              "agent_id": "insurance_exec",
+              "agent": "保险公司高管",
+              "verdict": "救援失败是拐点",
+              "prediction": "买家退出意味着风险不再是单一机构事件，而是市场信心问题。",
+              "action": "把尾部风险情景纳入资本计划，减少短期波动资产暴露。",
+              "confidence": 84,
+              "risk": "critical"
+            }
+          ]
+        },
+        {
+          "id": "T4_emergency_containment",
+          "cluster_key": "emergency_containment",
+          "title": "紧急收口派",
+          "summary": "虽然很差，但认为监管工具仍足以画出防火线。",
+          "risk": "high",
+          "avg_confidence": 91.8,
+          "members": [
+            "fed_watcher",
+            "bank_analyst",
+            "credit_analyst",
+            "treasury_manager"
+          ],
+          "member_names": [
+            "美联储政策观察者",
+            "华尔街银行分析师",
+            "信用评级分析师",
+            "企业司库主管"
+          ],
+          "voices": [
+            {
+              "agent_id": "treasury_manager",
+              "agent": "企业司库主管",
+              "verdict": "别再赌救援了",
+              "prediction": "融资失败后，任何延迟都会把企业现金管理推向被动挤兑。",
+              "action": "继续向更安全的主银行迁移资金，并通知团队工资风险。",
+              "confidence": 95,
+              "risk": "high"
+            },
+            {
+              "agent_id": "credit_analyst",
+              "agent": "信用评级分析师",
+              "verdict": "救助窗口关闭",
+              "prediction": "买家退出后，市场会把重点转向监管兜底和同业信心修复。",
+              "action": "复核区域银行估值折价和同业存款传染路径。",
+              "confidence": 92,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "fed_watcher",
+              "agent": "美联储政策观察者",
+              "verdict": "救助窗口收紧",
+              "prediction": "买家退出和融资失败说明私人市场无法消化冲击，政策介入的必要性上升。",
+              "action": "推进应急工具与处置路径设计，确保周末前可执行。",
+              "confidence": 90,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "bank_analyst",
+              "agent": "华尔街银行分析师",
+              "verdict": "买家退出属负面信号",
+              "prediction": "并购失败意味着市场无法通过私人资本吸收损失，银行股会继续承压。",
+              "action": "关注区域银行股和债券利差扩张。",
+              "confidence": 90,
+              "risk": "high"
+            }
+          ]
+        },
+        {
+          "id": "T4_payroll_survival",
+          "cluster_key": "payroll_survival",
+          "title": "发薪生存派",
+          "summary": "不讨论宏观，只关心这周现金和工资能否发出。",
+          "risk": "high",
+          "avg_confidence": 90.3,
+          "members": [
+            "vc_partner",
+            "startup_cfo",
+            "retail_depositor"
+          ],
+          "member_names": [
+            "硅谷VC合伙人",
+            "科技初创CFO",
+            "普通储户"
+          ],
+          "voices": [
+            {
+              "agent_id": "startup_cfo",
+              "agent": "科技初创CFO",
+              "verdict": "买家退出很危险",
+              "prediction": "并购和融资同时失败意味着储户恢复信心的窗口在关闭，时间不站在我们这边。",
+              "action": "向董事会提交应急现金迁移方案。",
+              "confidence": 93,
+              "risk": "critical"
+            },
+            {
+              "agent_id": "vc_partner",
+              "agent": "硅谷VC合伙人",
+              "verdict": "别再赌买家出现",
+              "prediction": "融资和出售谈判失败后，SVB 已经只剩监管接管一条路，风险会继续外溢。",
+              "action": "把所有依赖单一银行的资金结构改掉。",
+              "confidence": 89,
+              "risk": "high"
+            },
+            {
+              "agent_id": "retail_depositor",
+              "agent": "普通储户",
+              "verdict": "我等官方说法",
+              "prediction": "救助谈判失败会让我担心周一前还有别的银行也会出问题。",
+              "action": "保留流动性，等待监管和银行的正式说明。",
+              "confidence": 89,
+              "risk": "high"
+            }
+          ]
+        }
+      ],
+      "voices": [
+        {
+          "agent_id": "fintech_founder",
+          "agent": "Fintech创始人",
+          "confidence": 95,
+          "verdict": "买家基本没戏了",
+          "prediction": "融资失败后，市场会默认这不是单一银行问题，而是初创生态的系统性风险。",
+          "action": "把现金管理切换到保守模式，延长 runway 优先级最高。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "treasury_manager",
+          "agent": "企业司库主管",
+          "confidence": 95,
+          "verdict": "别再赌救援了",
+          "prediction": "融资失败后，任何延迟都会把企业现金管理推向被动挤兑。",
+          "action": "继续向更安全的主银行迁移资金，并通知团队工资风险。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "startup_cfo",
+          "agent": "科技初创CFO",
+          "confidence": 93,
+          "verdict": "买家退出很危险",
+          "prediction": "并购和融资同时失败意味着储户恢复信心的窗口在关闭，时间不站在我们这边。",
+          "action": "向董事会提交应急现金迁移方案。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "credit_analyst",
+          "agent": "信用评级分析师",
+          "confidence": 92,
+          "verdict": "救助窗口关闭",
+          "prediction": "买家退出后，市场会把重点转向监管兜底和同业信心修复。",
+          "action": "复核区域银行估值折价和同业存款传染路径。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "bank_analyst",
+          "agent": "华尔街银行分析师",
+          "confidence": 90,
+          "verdict": "买家退出属负面信号",
+          "prediction": "并购失败意味着市场无法通过私人资本吸收损失，银行股会继续承压。",
+          "action": "关注区域银行股和债券利差扩张。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "fed_watcher",
+          "agent": "美联储政策观察者",
+          "confidence": 90,
+          "verdict": "救助窗口收紧",
+          "prediction": "买家退出和融资失败说明私人市场无法消化冲击，政策介入的必要性上升。",
+          "action": "推进应急工具与处置路径设计，确保周末前可执行。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "media_reporter",
+          "agent": "科技财经记者",
+          "confidence": 90,
+          "verdict": "买家退出很关键",
+          "prediction": "救助谈判失败会让报道重心转向监管失灵与市场信任崩塌。",
+          "action": "补充专家评论，解释流动性和资本不是一回事。",
+          "contagion_risk": "critical"
+        },
+        {
+          "agent_id": "vc_partner",
+          "agent": "硅谷VC合伙人",
+          "confidence": 89,
+          "verdict": "别再赌买家出现",
+          "prediction": "融资和出售谈判失败后，SVB 已经只剩监管接管一条路，风险会继续外溢。",
+          "action": "把所有依赖单一银行的资金结构改掉。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "retail_depositor",
+          "agent": "普通储户",
+          "confidence": 89,
+          "verdict": "我等官方说法",
+          "prediction": "救助谈判失败会让我担心周一前还有别的银行也会出问题。",
+          "action": "保留流动性，等待监管和银行的正式说明。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "crypto_advocate",
+          "agent": "加密货币倡导者",
+          "confidence": 89,
+          "verdict": "救不了旧模式了",
+          "prediction": "融资失败会让更多人意识到，流动性安全不能完全交给银行。",
+          "action": "扩大对稳定币清算和链上储备方案的传播。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "short_seller",
+          "agent": "做空对冲基金经理",
+          "confidence": 88,
+          "verdict": "救助也有限",
+          "prediction": "买家退出说明私人资本不愿接盘，市场会继续交易系统性风险。",
+          "action": "保持对冲力度，观察是否出现第二只鞋落地。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "insurance_exec",
+          "agent": "保险公司高管",
+          "confidence": 84,
+          "verdict": "救援失败是拐点",
+          "prediction": "买家退出意味着风险不再是单一机构事件，而是市场信心问题。",
+          "action": "把尾部风险情景纳入资本计划，减少短期波动资产暴露。",
+          "contagion_risk": "critical"
+        }
+      ],
+      "transitions_in": [
+        {
+          "from": "T3_collapse_now",
+          "to": "T4_payroll_survival",
+          "count": 3,
+          "agents": [
+            "vc_partner",
+            "startup_cfo",
+            "retail_depositor"
+          ],
+          "agent_names": [
+            "硅谷VC合伙人",
+            "科技初创CFO",
+            "普通储户"
+          ]
+        },
+        {
+          "from": "T3_forced_resolution",
+          "to": "T4_emergency_containment",
+          "count": 4,
+          "agents": [
+            "bank_analyst",
+            "fed_watcher",
+            "credit_analyst",
+            "treasury_manager"
+          ],
+          "agent_names": [
+            "华尔街银行分析师",
+            "美联储政策观察者",
+            "信用评级分析师",
+            "企业司库主管"
+          ]
+        },
+        {
+          "from": "T3_collapse_now",
+          "to": "T4_systemic_spillover",
+          "count": 4,
+          "agents": [
+            "short_seller",
+            "fintech_founder",
+            "media_reporter",
+            "crypto_advocate"
+          ],
+          "agent_names": [
+            "做空对冲基金经理",
+            "Fintech创始人",
+            "科技财经记者",
+            "加密货币倡导者"
+          ]
+        },
+        {
+          "from": "T3_forced_resolution",
+          "to": "T4_systemic_spillover",
+          "count": 1,
+          "agents": [
+            "insurance_exec"
+          ],
+          "agent_names": [
+            "保险公司高管"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "T5",
+      "real_time": "2023-03-10 15:00",
+      "label": "FDIC 接管，部分回流",
+      "note": "开始出现“别的点的人跑进已存在的点”的情况。",
+      "actions": [
+        "FDIC 接管带来第一次明显回流",
+        "一些人从悲观点迁回托底点"
+      ],
+      "clusters": [
+        {
+          "id": "T5_backstop_working",
+          "cluster_key": "backstop_working",
+          "title": "托底生效派",
+          "summary": "FDIC 接管后，越来越多人转向‘虽然痛但不会系统性爆炸’。",
+          "risk": "high",
+          "avg_confidence": 89.7,
+          "members": [
+            "fed_watcher",
+            "bank_analyst",
+            "credit_analyst",
+            "treasury_manager",
+            "insurance_exec",
+            "startup_cfo",
+            "retail_depositor"
+          ],
+          "member_names": [
+            "美联储政策观察者",
+            "华尔街银行分析师",
+            "信用评级分析师",
+            "企业司库主管",
+            "保险公司高管",
+            "科技初创CFO",
+            "普通储户"
+          ],
+          "voices": [
+            {
+              "agent_id": "fed_watcher",
+              "agent": "美联储政策观察者",
+              "verdict": "必须果断托底",
+              "prediction": "FDIC 接管是止血动作，但若不扩大担保范围，恐慌仍会向其他银行传导。",
+              "action": "同步发布明确的储户保护和流动性支持信号。",
+              "confidence": 95,
+              "risk": "high"
+            },
+            {
+              "agent_id": "retail_depositor",
+              "agent": "普通储户",
+              "verdict": "终于有人接手",
+              "prediction": "FDIC 接管能暂时让我安心，但我还是会担心超额存款和连锁反应。",
+              "action": "查看保险覆盖情况，必要时分散账户以降低单点风险。",
+              "confidence": 94,
+              "risk": "high"
+            },
+            {
+              "agent_id": "insurance_exec",
+              "agent": "保险公司高管",
+              "verdict": "监管接管是必要的",
+              "prediction": "FDIC 接管会止血，但也会迫使市场重新评估所有区域银行。",
+              "action": "同步评估再保险、金融债和存放资产的二阶影响。",
+              "confidence": 91,
+              "risk": "high"
+            },
+            {
+              "agent_id": "treasury_manager",
+              "agent": "企业司库主管",
+              "verdict": "先确认保险覆盖",
+              "prediction": "FDIC 接管后，短期目标是核对保险额度和超额资金回收节奏。",
+              "action": "统计受保险保护金额，准备向监管和承接银行提交材料。",
+              "confidence": 90,
+              "risk": "high"
+            },
+            {
+              "agent_id": "credit_analyst",
+              "agent": "信用评级分析师",
+              "verdict": "接管符合预期",
+              "prediction": "FDIC 接管虽可稳定单体风险，但超额储户和未保险资金仍会引发再定价。",
+              "action": "更新受影响银行的同类风险敞口列表。",
+              "confidence": 88,
+              "risk": "high"
+            },
+            {
+              "agent_id": "startup_cfo",
+              "agent": "科技初创CFO",
+              "verdict": "接管后也不能松手",
+              "prediction": "FDIC 接管会降低最坏尾部风险，但超额资金和业务连续性仍需单独管理。",
+              "action": "把超额现金与运营现金彻底分桶。",
+              "confidence": 86,
+              "risk": "high"
+            },
+            {
+              "agent_id": "bank_analyst",
+              "agent": "华尔街银行分析师",
+              "verdict": "监管接管但未止血",
+              "prediction": "FDIC 接管降低了破产混乱，但对同类银行的资产端压力并未结束。",
+              "action": "重新评估流动性覆盖率和未实现损失。",
+              "confidence": 84,
+              "risk": "high"
+            }
+          ]
+        },
+        {
+          "id": "T5_contagion_not_over",
+          "cluster_key": "contagion_not_over",
+          "title": "余震未完派",
+          "summary": "接管不是结束，只是把连锁反应推迟。",
+          "risk": "high",
+          "avg_confidence": 83.2,
+          "members": [
+            "vc_partner",
+            "short_seller",
+            "fintech_founder",
+            "media_reporter",
+            "crypto_advocate"
+          ],
+          "member_names": [
+            "硅谷VC合伙人",
+            "做空对冲基金经理",
+            "Fintech创始人",
+            "科技财经记者",
+            "加密货币倡导者"
+          ],
+          "voices": [
+            {
+              "agent_id": "fintech_founder",
+              "agent": "Fintech创始人",
+              "verdict": "监管终于下场了",
+              "prediction": "FDIC 接管会短暂缓和情绪，但超额存款和付款链条仍会引发次级恐慌。",
+              "action": "对员工发布稳定口径，同时跟银行和客户同步付款安排。",
+              "confidence": 90,
+              "risk": "high"
+            },
+            {
+              "agent_id": "media_reporter",
+              "agent": "科技财经记者",
+              "verdict": "标题会迅速统一",
+              "prediction": "FDIC 接管后，媒体会进入第二波，开始追问谁会被保护、谁会承受损失。",
+              "action": "跟进储户、员工和创业者的后续影响。",
+              "confidence": 85,
+              "risk": "high"
+            },
+            {
+              "agent_id": "crypto_advocate",
+              "agent": "加密货币倡导者",
+              "verdict": "监管终究会兜底",
+              "prediction": "FDIC 接管能止住恐慌，但也说明系统最终还是靠中心化权力收场。",
+              "action": "强调去中心化工具的长期价值，而不是短期投机。",
+              "confidence": 83,
+              "risk": "high"
+            },
+            {
+              "agent_id": "short_seller",
+              "agent": "做空对冲基金经理",
+              "verdict": "政策会压波动",
+              "prediction": "FDIC 接管会短线打压空头收益，但行业重估不会立刻结束。",
+              "action": "减少裸空暴露，转向相对价值和事件驱动策略。",
+              "confidence": 82,
+              "risk": "medium"
+            },
+            {
+              "agent_id": "vc_partner",
+              "agent": "硅谷VC合伙人",
+              "verdict": "接管只是后续开始",
+              "prediction": "FDIC 接管会缓解一部分储户恐慌，但创业公司和基金仍会重新审视银行对手风险。",
+              "action": "把这次事件写进风控清单和投后模板。",
+              "confidence": 76,
+              "risk": "high"
+            }
+          ]
+        }
+      ],
+      "voices": [
+        {
+          "agent_id": "fed_watcher",
+          "agent": "美联储政策观察者",
+          "confidence": 95,
+          "verdict": "必须果断托底",
+          "prediction": "FDIC 接管是止血动作，但若不扩大担保范围，恐慌仍会向其他银行传导。",
+          "action": "同步发布明确的储户保护和流动性支持信号。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "retail_depositor",
+          "agent": "普通储户",
+          "confidence": 94,
+          "verdict": "终于有人接手",
+          "prediction": "FDIC 接管能暂时让我安心，但我还是会担心超额存款和连锁反应。",
+          "action": "查看保险覆盖情况，必要时分散账户以降低单点风险。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "insurance_exec",
+          "agent": "保险公司高管",
+          "confidence": 91,
+          "verdict": "监管接管是必要的",
+          "prediction": "FDIC 接管会止血，但也会迫使市场重新评估所有区域银行。",
+          "action": "同步评估再保险、金融债和存放资产的二阶影响。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "fintech_founder",
+          "agent": "Fintech创始人",
+          "confidence": 90,
+          "verdict": "监管终于下场了",
+          "prediction": "FDIC 接管会短暂缓和情绪，但超额存款和付款链条仍会引发次级恐慌。",
+          "action": "对员工发布稳定口径，同时跟银行和客户同步付款安排。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "treasury_manager",
+          "agent": "企业司库主管",
+          "confidence": 90,
+          "verdict": "先确认保险覆盖",
+          "prediction": "FDIC 接管后，短期目标是核对保险额度和超额资金回收节奏。",
+          "action": "统计受保险保护金额，准备向监管和承接银行提交材料。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "credit_analyst",
+          "agent": "信用评级分析师",
+          "confidence": 88,
+          "verdict": "接管符合预期",
+          "prediction": "FDIC 接管虽可稳定单体风险，但超额储户和未保险资金仍会引发再定价。",
+          "action": "更新受影响银行的同类风险敞口列表。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "startup_cfo",
+          "agent": "科技初创CFO",
+          "confidence": 86,
+          "verdict": "接管后也不能松手",
+          "prediction": "FDIC 接管会降低最坏尾部风险，但超额资金和业务连续性仍需单独管理。",
+          "action": "把超额现金与运营现金彻底分桶。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "media_reporter",
+          "agent": "科技财经记者",
+          "confidence": 85,
+          "verdict": "标题会迅速统一",
+          "prediction": "FDIC 接管后，媒体会进入第二波，开始追问谁会被保护、谁会承受损失。",
+          "action": "跟进储户、员工和创业者的后续影响。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "bank_analyst",
+          "agent": "华尔街银行分析师",
+          "confidence": 84,
+          "verdict": "监管接管但未止血",
+          "prediction": "FDIC 接管降低了破产混乱，但对同类银行的资产端压力并未结束。",
+          "action": "重新评估流动性覆盖率和未实现损失。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "crypto_advocate",
+          "agent": "加密货币倡导者",
+          "confidence": 83,
+          "verdict": "监管终究会兜底",
+          "prediction": "FDIC 接管能止住恐慌，但也说明系统最终还是靠中心化权力收场。",
+          "action": "强调去中心化工具的长期价值，而不是短期投机。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "short_seller",
+          "agent": "做空对冲基金经理",
+          "confidence": 82,
+          "verdict": "政策会压波动",
+          "prediction": "FDIC 接管会短线打压空头收益，但行业重估不会立刻结束。",
+          "action": "减少裸空暴露，转向相对价值和事件驱动策略。",
+          "contagion_risk": "medium"
+        },
+        {
+          "agent_id": "vc_partner",
+          "agent": "硅谷VC合伙人",
+          "confidence": 76,
+          "verdict": "接管只是后续开始",
+          "prediction": "FDIC 接管会缓解一部分储户恐慌，但创业公司和基金仍会重新审视银行对手风险。",
+          "action": "把这次事件写进风控清单和投后模板。",
+          "contagion_risk": "high"
+        }
+      ],
+      "transitions_in": [
+        {
+          "from": "T4_payroll_survival",
+          "to": "T5_contagion_not_over",
+          "count": 1,
+          "agents": [
+            "vc_partner"
+          ],
+          "agent_names": [
+            "硅谷VC合伙人"
+          ]
+        },
+        {
+          "from": "T4_payroll_survival",
+          "to": "T5_backstop_working",
+          "count": 2,
+          "agents": [
+            "startup_cfo",
+            "retail_depositor"
+          ],
+          "agent_names": [
+            "科技初创CFO",
+            "普通储户"
+          ]
+        },
+        {
+          "from": "T4_emergency_containment",
+          "to": "T5_backstop_working",
+          "count": 4,
+          "agents": [
+            "bank_analyst",
+            "fed_watcher",
+            "credit_analyst",
+            "treasury_manager"
+          ],
+          "agent_names": [
+            "华尔街银行分析师",
+            "美联储政策观察者",
+            "信用评级分析师",
+            "企业司库主管"
+          ]
+        },
+        {
+          "from": "T4_systemic_spillover",
+          "to": "T5_contagion_not_over",
+          "count": 4,
+          "agents": [
+            "short_seller",
+            "fintech_founder",
+            "media_reporter",
+            "crypto_advocate"
+          ],
+          "agent_names": [
+            "做空对冲基金经理",
+            "Fintech创始人",
+            "科技财经记者",
+            "加密货币倡导者"
+          ]
+        },
+        {
+          "from": "T4_systemic_spillover",
+          "to": "T5_backstop_working",
+          "count": 1,
+          "agents": [
+            "insurance_exec"
+          ],
+          "agent_names": [
+            "保险公司高管"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "T6",
+      "real_time": "2023-03-12 18:00",
+      "label": "联合担保后，收束成两点",
+      "note": "最终画面更像收束后的共识地形，而不是树状分支图。",
+      "actions": [
+        "大多数人并入‘稳定回归点’",
+        "只剩少数人停留在尾部余震点"
+      ],
+      "clusters": [
+        {
+          "id": "T6_stabilization",
+          "cluster_key": "stabilization",
+          "title": "稳定回归点",
+          "summary": "大多数人汇聚到‘政策已托底、系统趋稳’这个共识点。",
+          "risk": "medium",
+          "avg_confidence": 76.6,
+          "members": [
+            "fed_watcher",
+            "bank_analyst",
+            "credit_analyst",
+            "treasury_manager",
+            "insurance_exec",
+            "startup_cfo",
+            "retail_depositor",
+            "fintech_founder",
+            "media_reporter"
+          ],
+          "member_names": [
+            "美联储政策观察者",
+            "华尔街银行分析师",
+            "信用评级分析师",
+            "企业司库主管",
+            "保险公司高管",
+            "科技初创CFO",
+            "普通储户",
+            "Fintech创始人",
+            "科技财经记者"
+          ],
+          "voices": [
+            {
+              "agent_id": "credit_analyst",
+              "agent": "信用评级分析师",
+              "verdict": "外溢风险仍在",
+              "prediction": "Signature 倒闭确认传染路径，后续会看到更高的流动性溢价和监管干预。",
+              "action": "提高对区域银行和加密友好银行的审慎等级。",
+              "confidence": 87,
+              "risk": "high"
+            },
+            {
+              "agent_id": "fed_watcher",
+              "agent": "美联储政策观察者",
+              "verdict": "传染暂时受控",
+              "prediction": "联合声明和 BTFP 能缓和短期冲击，但区域银行体系的信心修复仍需时间。",
+              "action": "持续观察 First Republic 等受压机构，防止二次震荡。",
+              "confidence": 86,
+              "risk": "medium"
+            },
+            {
+              "agent_id": "media_reporter",
+              "agent": "科技财经记者",
+              "verdict": "故事还没结束",
+              "prediction": "Signature 的倒闭会把危机从单点事件升级成区域银行链式风险叙事。",
+              "action": "把 SVB 案例放进更大的加息周期背景中复盘。",
+              "confidence": 81,
+              "risk": "high"
+            },
+            {
+              "agent_id": "fintech_founder",
+              "agent": "Fintech创始人",
+              "verdict": "蔓延到别家了",
+              "prediction": "Signature 倒闭说明这不是孤立事件，科技和加密相关资金会继续重估银行风险。",
+              "action": "把资金结构长期改成多银行、多币种、短久期组合。",
+              "confidence": 78,
+              "risk": "high"
+            },
+            {
+              "agent_id": "retail_depositor",
+              "agent": "普通储户",
+              "verdict": "还是别太乐观",
+              "prediction": "联合声明会缓和情绪，但我会继续担心其他银行会不会被牵连。",
+              "action": "先观察市场和银行公告，再决定是否调整资金配置。",
+              "confidence": 77,
+              "risk": "medium"
+            },
+            {
+              "agent_id": "bank_analyst",
+              "agent": "华尔街银行分析师",
+              "verdict": "蔓延进入第二家银行",
+              "prediction": "Signature 的倒闭证明本轮冲击已从个体银行扩展到更广泛的区域银行板块。",
+              "action": "把传染路径写进下一轮风险模型。",
+              "confidence": 73,
+              "risk": "medium"
+            },
+            {
+              "agent_id": "treasury_manager",
+              "agent": "企业司库主管",
+              "verdict": "先稳住再复盘",
+              "prediction": "全额保护会缓解当下恐慌，但企业的银行集中度问题不会自动消失。",
+              "action": "把这次事件写入司库政策，要求常态化分散存款。",
+              "confidence": 72,
+              "risk": "medium"
+            },
+            {
+              "agent_id": "insurance_exec",
+              "agent": "保险公司高管",
+              "verdict": "短期稳定，长期重估",
+              "prediction": "全额担保和 BTFP 会稳定情绪，但银行体系的期限错配仍需重估。",
+              "action": "维持防守仓位，同时观察 First Republic 等后续连锁反应。",
+              "confidence": 69,
+              "risk": "medium"
+            },
+            {
+              "agent_id": "startup_cfo",
+              "agent": "科技初创CFO",
+              "verdict": "这会影响每家 CFO",
+              "prediction": "Signature 倒闭后，初创公司会系统性重做银行配置，单账户策略会被淘汰。",
+              "action": "建立多银行和短周期回款制度。",
+              "confidence": 66,
+              "risk": "medium"
+            }
+          ]
+        },
+        {
+          "id": "T6_aftershock",
+          "cluster_key": "aftershock",
+          "title": "尾部余震点",
+          "summary": "仍有人坚持银行业的信任缺口不会立刻补上。",
+          "risk": "medium",
+          "avg_confidence": 67.3,
+          "members": [
+            "vc_partner",
+            "short_seller",
+            "crypto_advocate"
+          ],
+          "member_names": [
+            "硅谷VC合伙人",
+            "做空对冲基金经理",
+            "加密货币倡导者"
+          ],
+          "voices": [
+            {
+              "agent_id": "short_seller",
+              "agent": "做空对冲基金经理",
+              "verdict": "故事还没完",
+              "prediction": "联合声明会缓和市场，但银行板块的估值修复会非常分化。",
+              "action": "切换到更精细的标的筛选，等待次级传染机会。",
+              "confidence": 74,
+              "risk": "medium"
+            },
+            {
+              "agent_id": "crypto_advocate",
+              "agent": "加密货币倡导者",
+              "verdict": "叙事开始分化",
+              "prediction": "全额担保会暂时缓和市场，但也会让更多人寻找非银行替代品。",
+              "action": "把这次危机整理成教育材料，面向初创团队持续传播。",
+              "confidence": 67,
+              "risk": "medium"
+            },
+            {
+              "agent_id": "vc_partner",
+              "agent": "硅谷VC合伙人",
+              "verdict": "蔓延已从银行扩散",
+              "prediction": "Signature 的倒闭说明这不是单点事故，区域银行都会被重新定价。",
+              "action": "继续推动资金分散，避免再次押注单一银行。",
+              "confidence": 61,
+              "risk": "medium"
+            }
+          ]
+        }
+      ],
+      "voices": [
+        {
+          "agent_id": "credit_analyst",
+          "agent": "信用评级分析师",
+          "confidence": 87,
+          "verdict": "外溢风险仍在",
+          "prediction": "Signature 倒闭确认传染路径，后续会看到更高的流动性溢价和监管干预。",
+          "action": "提高对区域银行和加密友好银行的审慎等级。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "fed_watcher",
+          "agent": "美联储政策观察者",
+          "confidence": 86,
+          "verdict": "传染暂时受控",
+          "prediction": "联合声明和 BTFP 能缓和短期冲击，但区域银行体系的信心修复仍需时间。",
+          "action": "持续观察 First Republic 等受压机构，防止二次震荡。",
+          "contagion_risk": "medium"
+        },
+        {
+          "agent_id": "media_reporter",
+          "agent": "科技财经记者",
+          "confidence": 81,
+          "verdict": "故事还没结束",
+          "prediction": "Signature 的倒闭会把危机从单点事件升级成区域银行链式风险叙事。",
+          "action": "把 SVB 案例放进更大的加息周期背景中复盘。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "fintech_founder",
+          "agent": "Fintech创始人",
+          "confidence": 78,
+          "verdict": "蔓延到别家了",
+          "prediction": "Signature 倒闭说明这不是孤立事件，科技和加密相关资金会继续重估银行风险。",
+          "action": "把资金结构长期改成多银行、多币种、短久期组合。",
+          "contagion_risk": "high"
+        },
+        {
+          "agent_id": "retail_depositor",
+          "agent": "普通储户",
+          "confidence": 77,
+          "verdict": "还是别太乐观",
+          "prediction": "联合声明会缓和情绪，但我会继续担心其他银行会不会被牵连。",
+          "action": "先观察市场和银行公告，再决定是否调整资金配置。",
+          "contagion_risk": "medium"
+        },
+        {
+          "agent_id": "short_seller",
+          "agent": "做空对冲基金经理",
+          "confidence": 74,
+          "verdict": "故事还没完",
+          "prediction": "联合声明会缓和市场，但银行板块的估值修复会非常分化。",
+          "action": "切换到更精细的标的筛选，等待次级传染机会。",
+          "contagion_risk": "medium"
+        },
+        {
+          "agent_id": "bank_analyst",
+          "agent": "华尔街银行分析师",
+          "confidence": 73,
+          "verdict": "蔓延进入第二家银行",
+          "prediction": "Signature 的倒闭证明本轮冲击已从个体银行扩展到更广泛的区域银行板块。",
+          "action": "把传染路径写进下一轮风险模型。",
+          "contagion_risk": "medium"
+        },
+        {
+          "agent_id": "treasury_manager",
+          "agent": "企业司库主管",
+          "confidence": 72,
+          "verdict": "先稳住再复盘",
+          "prediction": "全额保护会缓解当下恐慌，但企业的银行集中度问题不会自动消失。",
+          "action": "把这次事件写入司库政策，要求常态化分散存款。",
+          "contagion_risk": "medium"
+        },
+        {
+          "agent_id": "insurance_exec",
+          "agent": "保险公司高管",
+          "confidence": 69,
+          "verdict": "短期稳定，长期重估",
+          "prediction": "全额担保和 BTFP 会稳定情绪，但银行体系的期限错配仍需重估。",
+          "action": "维持防守仓位，同时观察 First Republic 等后续连锁反应。",
+          "contagion_risk": "medium"
+        },
+        {
+          "agent_id": "crypto_advocate",
+          "agent": "加密货币倡导者",
+          "confidence": 67,
+          "verdict": "叙事开始分化",
+          "prediction": "全额担保会暂时缓和市场，但也会让更多人寻找非银行替代品。",
+          "action": "把这次危机整理成教育材料，面向初创团队持续传播。",
+          "contagion_risk": "medium"
+        },
+        {
+          "agent_id": "startup_cfo",
+          "agent": "科技初创CFO",
+          "confidence": 66,
+          "verdict": "这会影响每家 CFO",
+          "prediction": "Signature 倒闭后，初创公司会系统性重做银行配置，单账户策略会被淘汰。",
+          "action": "建立多银行和短周期回款制度。",
+          "contagion_risk": "medium"
+        },
+        {
+          "agent_id": "vc_partner",
+          "agent": "硅谷VC合伙人",
+          "confidence": 61,
+          "verdict": "蔓延已从银行扩散",
+          "prediction": "Signature 的倒闭说明这不是单点事故，区域银行都会被重新定价。",
+          "action": "继续推动资金分散，避免再次押注单一银行。",
+          "contagion_risk": "medium"
+        }
+      ],
+      "transitions_in": [
+        {
+          "from": "T5_contagion_not_over",
+          "to": "T6_aftershock",
+          "count": 3,
+          "agents": [
+            "vc_partner",
+            "short_seller",
+            "crypto_advocate"
+          ],
+          "agent_names": [
+            "硅谷VC合伙人",
+            "做空对冲基金经理",
+            "加密货币倡导者"
+          ]
+        },
+        {
+          "from": "T5_backstop_working",
+          "to": "T6_stabilization",
+          "count": 7,
+          "agents": [
+            "startup_cfo",
+            "bank_analyst",
+            "fed_watcher",
+            "retail_depositor",
+            "credit_analyst",
+            "treasury_manager",
+            "insurance_exec"
+          ],
+          "agent_names": [
+            "科技初创CFO",
+            "华尔街银行分析师",
+            "美联储政策观察者",
+            "普通储户",
+            "信用评级分析师",
+            "企业司库主管",
+            "保险公司高管"
+          ]
+        },
+        {
+          "from": "T5_contagion_not_over",
+          "to": "T6_stabilization",
+          "count": 2,
+          "agents": [
+            "fintech_founder",
+            "media_reporter"
+          ],
+          "agent_names": [
+            "Fintech创始人",
+            "科技财经记者"
+          ]
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene_T0",
+      "type": "step",
+      "step_id": "T0",
+      "label": "共同看到亏损公告",
+      "timeline_label": "T0",
+      "visible_step_count": 1,
+      "note": "同样的信息入口，不同的人设开始给出不同的口气与信心。"
+    },
+    {
+      "id": "scene_T1",
+      "type": "step",
+      "step_id": "T1",
+      "label": "股价暴跌，第一次分营",
+      "timeline_label": "T1",
+      "visible_step_count": 2,
+      "note": "第一次可视化分营出现：保命、核查、等监管。"
+    },
+    {
+      "id": "scene_T2",
+      "type": "step",
+      "step_id": "T2",
+      "label": "VC 提款建议，第二次重组",
+      "timeline_label": "T2",
+      "visible_step_count": 3,
+      "note": "这一步是“从一个原点连到多个不同的点”最明显的时刻。"
+    },
+    {
+      "id": "scene_T3",
+      "type": "step",
+      "step_id": "T3",
+      "label": "420 亿提款请求，阵营坍缩",
+      "timeline_label": "T3",
+      "visible_step_count": 4,
+      "note": "不是所有点都继续长大，很多人会并到更强的点上。"
+    },
+    {
+      "id": "scene_T4",
+      "type": "step",
+      "step_id": "T4",
+      "label": "救助失败，新节点产生",
+      "timeline_label": "T4",
+      "visible_step_count": 5,
+      "note": "这里有典型的新点出现，不只是旧点之间迁移。"
+    },
+    {
+      "id": "scene_T5",
+      "type": "step",
+      "step_id": "T5",
+      "label": "FDIC 接管，部分回流",
+      "timeline_label": "T5",
+      "visible_step_count": 6,
+      "note": "开始出现“别的点的人跑进已存在的点”的情况。"
+    },
+    {
+      "id": "scene_T6",
+      "type": "step",
+      "step_id": "T6",
+      "label": "联合担保后，收束成两点",
+      "timeline_label": "T6",
+      "visible_step_count": 7,
+      "note": "最终画面更像收束后的共识地形，而不是树状分支图。"
+    },
+    {
+      "id": "scene_rollback",
+      "type": "rollback",
+      "timeline_label": "RB",
+      "label": "回滚到 T2 的分叉点",
+      "visible_step_count": 7,
+      "from_step_id": "T6",
+      "to_step_id": "T2",
+      "note": "不是重新生成总结，而是把视角从终局拉回首次显著分歧的地方。"
+    },
+    {
+      "id": "scene_merge",
+      "type": "merge",
+      "timeline_label": "MG",
+      "label": "将胜出路径并回主线",
+      "visible_step_count": 7,
+      "winner_cluster_id": "T6_stabilization",
+      "note": "主线重新点亮，最接近真实结局的群体共识被吸收成新的组织记忆。"
+    }
+  ],
+  "finale": {
+    "merge_target_label": "main 主线",
+    "winner_cluster_id": "T6_stabilization",
+    "rollback_to_step_id": "T2"
+  }
+}

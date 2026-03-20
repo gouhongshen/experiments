@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SVB 共识簇演化 Demo</title>
+<style>
+:root {
+  --bg: #08111c;
+  --panel: rgba(10, 17, 30, 0.94);
+  --panel-soft: rgba(17, 26, 43, 0.9);
+  --text: #e8eef8;
+  --muted: #8fa3c0;
+  --cyan: #67e8f9;
+  --blue: #60a5fa;
+  --green: #86efac;
+  --amber: #fbbf24;
+  --red: #fb7185;
+  --grid: rgba(148, 163, 184, 0.08);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(56, 189, 248, 0.12), transparent 26%),
+    radial-gradient(circle at 88% 8%, rgba(251, 113, 133, 0.12), transparent 22%),
+    linear-gradient(180deg, #06101b, #0a1220 42%, #0f172a);
+}
+.app {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: blur(18px);
+  background: rgba(5, 10, 18, 0.86);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+  padding: 18px 24px 16px;
+}
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+}
+.hero h1 {
+  margin: 0;
+  font-family: "Space Grotesk", "IBM Plex Sans", sans-serif;
+  font-size: 30px;
+  letter-spacing: -0.04em;
+}
+.hero p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  max-width: 760px;
+}
+.controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+button {
+  border: 0;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #172338;
+  color: var(--text);
+  font-weight: 700;
+  cursor: pointer;
+}
+button:hover { background: #233250; }
+input[type="range"] { width: 160px; }
+.timeline {
+  display: flex;
+  gap: 10px;
+  padding-top: 14px;
+  flex-wrap: wrap;
+}
+.scene-pill {
+  min-width: 96px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  transition: 180ms ease;
+}
+.scene-pill.active {
+  transform: translateY(-2px);
+  border-color: rgba(103, 232, 249, 0.75);
+  box-shadow: 0 0 0 1px rgba(103, 232, 249, 0.16), 0 18px 40px rgba(14, 165, 233, 0.16);
+}
+.scene-pill.done { border-color: rgba(134, 239, 172, 0.28); }
+.scene-pill .id {
+  font-size: 12px;
+  color: var(--cyan);
+  font-weight: 800;
+}
+.scene-pill .label {
+  margin-top: 4px;
+  font-size: 12px;
+}
+.main {
+  display: grid;
+  grid-template-columns: 330px 1fr 340px;
+  gap: 18px;
+  padding: 18px 24px 24px;
+}
+.panel {
+  min-height: 0;
+  background: var(--panel);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 24px;
+  padding: 18px;
+}
+.panel h2 {
+  margin: 0 0 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 13px;
+}
+.voices, .inspector {
+  overflow: auto;
+  max-height: calc(100vh - 230px);
+}
+.voice {
+  margin-bottom: 10px;
+  padding: 12px 13px;
+  border-radius: 18px;
+  background: rgba(20, 29, 48, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.08);
+  animation: fadeUp 220ms ease;
+}
+.voice-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.voice .agent {
+  font-size: 12px;
+  color: var(--muted);
+}
+.voice .verdict {
+  margin-top: 5px;
+  font-size: 14px;
+  line-height: 1.35;
+}
+.voice .meta {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--cyan);
+}
+.graph-wrap {
+  position: relative;
+  overflow: auto;
+  background:
+    linear-gradient(transparent 35px, var(--grid) 36px),
+    linear-gradient(90deg, transparent 35px, var(--grid) 36px);
+  background-size: 36px 36px;
+}
+.graph-stage {
+  position: relative;
+  min-width: 2100px;
+  min-height: 940px;
+}
+#graphSvg, #effectSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.column-title {
+  position: absolute;
+  width: 220px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(10, 18, 32, 0.88);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  transition: 220ms ease;
+}
+.column-title .time {
+  color: var(--cyan);
+  font-size: 12px;
+}
+.column-title .label {
+  margin-top: 5px;
+  font-size: 13px;
+}
+.column-title.dimmed { opacity: 0.18; filter: saturate(0.2); }
+.node {
+  position: absolute;
+  width: 220px;
+  border-radius: 22px;
+  background: rgba(12, 19, 33, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.13);
+  padding: 14px;
+  box-shadow: 0 18px 30px rgba(2, 6, 23, 0.34);
+  transition: 200ms ease;
+}
+.node.pre-enter {
+  opacity: 0.15;
+  transform: translateY(18px) scale(0.985);
+}
+.node.dimmed {
+  opacity: 0.18;
+  filter: saturate(0.18);
+}
+.node.active {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(103, 232, 249, 0.18), 0 22px 42px rgba(14, 165, 233, 0.18);
+}
+.node.rollback-target {
+  box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.3), 0 24px 48px rgba(251, 191, 36, 0.16);
+}
+.node .title {
+  font-family: "Space Grotesk", "IBM Plex Sans", sans-serif;
+  font-size: 18px;
+}
+.node .summary {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #09111b;
+}
+.low { background: var(--green); }
+.medium { background: var(--cyan); }
+.high { background: var(--amber); }
+.critical { background: var(--red); color: #fff2f5; }
+.members {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+.member-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-weight: 800;
+  color: #eff6ff;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08), 0 6px 12px rgba(2, 6, 23, 0.18);
+}
+.avatar.md {
+  width: 30px;
+  height: 30px;
+  font-size: 11px;
+  flex: 0 0 30px;
+}
+.avatar.sm {
+  width: 22px;
+  height: 22px;
+  font-size: 9px;
+  flex: 0 0 22px;
+}
+.avatar.lg {
+  width: 34px;
+  height: 34px;
+  font-size: 12px;
+  flex: 0 0 34px;
+}
+.member-avatar {
+  position: relative;
+}
+.member-avatar::after {
+  content: attr(data-name);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 4px 6px;
+  border-radius: 8px;
+  font-size: 10px;
+  color: #e8eef8;
+  background: rgba(7, 12, 23, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  opacity: 0;
+  pointer-events: none;
+  transition: 120ms ease;
+}
+.member-avatar:hover::after {
+  opacity: 1;
+}
+.scene-note {
+  position: absolute;
+  right: 26px;
+  top: 26px;
+  width: 300px;
+  padding: 14px 15px;
+  border-radius: 18px;
+  background: rgba(7, 12, 23, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  box-shadow: 0 18px 30px rgba(2, 6, 23, 0.36);
+}
+.scene-note .kicker {
+  color: var(--cyan);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+.scene-note .text {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.voice-bubble {
+  position: absolute;
+  width: 170px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(19, 28, 48, 0.94);
+  border: 1px solid rgba(103, 232, 249, 0.16);
+  box-shadow: 0 14px 22px rgba(2, 6, 23, 0.28);
+  pointer-events: none;
+}
+.voice-bubble .bubble-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.voice-bubble .agent {
+  font-size: 11px;
+  color: var(--muted);
+}
+.voice-bubble .verdict {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.35;
+}
+.voice-bubble .meta {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--cyan);
+}
+.section-card {
+  margin-bottom: 12px;
+  border-radius: 18px;
+  padding: 14px;
+  background: var(--panel-soft);
+  border: 1px solid rgba(148, 163, 184, 0.08);
+}
+.section-card h3 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.section-card p, .section-card div {
+  font-size: 13px;
+  line-height: 1.5;
+}
+.flow-row {
+  padding: 8px 0;
+  border-top: 1px solid rgba(148, 163, 184, 0.08);
+}
+.flow-row:first-child { border-top: 0; padding-top: 0; }
+.flow-token text {
+  font-size: 10px;
+  font-weight: 800;
+  fill: #f8fbff;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events: none;
+}
+.flow-token rect {
+  fill: rgba(15, 23, 42, 0.92);
+  stroke: rgba(103, 232, 249, 0.58);
+  stroke-width: 1;
+}
+.flow-token circle {
+  fill: rgba(103, 232, 249, 0.96);
+  filter: drop-shadow(0 0 10px rgba(103, 232, 249, 0.4));
+}
+.merge-node {
+  position: absolute;
+  width: 220px;
+  border-radius: 24px;
+  padding: 16px;
+  background: linear-gradient(180deg, rgba(13, 22, 39, 0.98), rgba(8, 15, 29, 0.98));
+  border: 1px solid rgba(103, 232, 249, 0.22);
+  box-shadow: 0 22px 42px rgba(14, 165, 233, 0.18);
+}
+.merge-node .title {
+  font-family: "Space Grotesk", "IBM Plex Sans", sans-serif;
+  font-size: 20px;
+}
+.merge-node .summary {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.merge-node .merge-members {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+.sweep {
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.22), transparent);
+  mix-blend-mode: screen;
+}
+.effect-label {
+  position: absolute;
+  left: 50%;
+  top: 92px;
+  transform: translateX(-50%);
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-family: "Space Grotesk", "IBM Plex Sans", sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #eef7ff;
+  background: rgba(8, 14, 28, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  box-shadow: 0 18px 30px rgba(2, 6, 23, 0.32);
+}
+.effect-label.rollback {
+  border-color: rgba(251, 191, 36, 0.3);
+  color: #fde68a;
+}
+.effect-label.merge {
+  border-color: rgba(103, 232, 249, 0.34);
+  color: #cffafe;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 1240px) {
+  .main { grid-template-columns: 1fr; }
+  .voices, .inspector { max-height: none; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="header">
+    <div class="hero">
+      <div>
+        <h1 id="title"></h1>
+        <p id="subtitle"></p>
+      </div>
+      <div class="controls">
+        <button id="playBtn">播放</button>
+        <button id="prevBtn">上一步</button>
+        <button id="nextBtn">下一步</button>
+        <input id="speed" type="range" min="1200" max="3400" step="100" value="2200">
+        <span id="speedLabel">2.2s</span>
+      </div>
+    </div>
+    <div id="timeline" class="timeline"></div>
+  </div>
+
+  <div class="main">
+    <section class="panel">
+      <h2>Voices</h2>
+      <div id="voices" class="voices"></div>
+    </section>
+
+    <section class="panel graph-wrap">
+      <div id="graphStage" class="graph-stage">
+        <svg id="graphSvg"></svg>
+        <svg id="effectSvg"></svg>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Consensus Inspector</h2>
+      <div id="inspector" class="inspector"></div>
+    </section>
+  </div>
+</div>
+
+<script>
+const DATA = __DATA_JSON__;
+const STEP_X = 84;
+const STEP_GAP = 252;
+const NODE_W = 220;
+const NODE_GAP_Y = 38;
+const NODE_BASE_H = 120;
+const MEMBER_ROW_H = 24;
+const MERGE_NODE_X = STEP_X + (DATA.steps.length - 1) * STEP_GAP + 300;
+const MERGE_NODE_Y = 240;
+
+const titleEl = document.getElementById("title");
+const subtitleEl = document.getElementById("subtitle");
+const timelineEl = document.getElementById("timeline");
+const voicesEl = document.getElementById("voices");
+const inspectorEl = document.getElementById("inspector");
+const graphStageEl = document.getElementById("graphStage");
+const graphSvg = document.getElementById("graphSvg");
+const effectSvg = document.getElementById("effectSvg");
+const playBtn = document.getElementById("playBtn");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const speedEl = document.getElementById("speed");
+const speedLabel = document.getElementById("speedLabel");
+
+const PERSONA_VISUALS = {
+  vc_partner: { short: "VC", color: "#0ea5e9" },
+  startup_cfo: { short: "CF", color: "#22c55e" },
+  bank_analyst: { short: "BA", color: "#6366f1" },
+  fed_watcher: { short: "FD", color: "#f59e0b" },
+  retail_depositor: { short: "RD", color: "#ec4899" },
+  short_seller: { short: "SS", color: "#ef4444" },
+  fintech_founder: { short: "FT", color: "#14b8a6" },
+  media_reporter: { short: "MR", color: "#8b5cf6" },
+  credit_analyst: { short: "CR", color: "#64748b" },
+  treasury_manager: { short: "TR", color: "#84cc16" },
+  insurance_exec: { short: "IN", color: "#f97316" },
+  crypto_advocate: { short: "CY", color: "#06b6d4" },
+};
+
+titleEl.textContent = DATA.title;
+subtitleEl.textContent = DATA.subtitle;
+
+let cursor = 0;
+let playing = false;
+let queuedTimeout = null;
+let layout = {};
+let sceneToken = 0;
+
+function currentScene() {
+  return DATA.scenes[cursor];
+}
+
+function currentStepDuration() {
+  return Number(speedEl.value);
+}
+
+function nodeHeight(cluster) {
+  return NODE_BASE_H + Math.ceil(cluster.members.length / 2) * MEMBER_ROW_H;
+}
+
+function findStep(stepId) {
+  return DATA.steps.find((step) => step.id === stepId);
+}
+
+function getStepIndex(stepId) {
+  return DATA.steps.findIndex((step) => step.id === stepId);
+}
+
+function findCluster(clusterId) {
+  for (const step of DATA.steps) {
+    const cluster = step.clusters.find((item) => item.id === clusterId);
+    if (cluster) return cluster;
+  }
+  return null;
+}
+
+function computeLayout() {
+  layout = {};
+  let maxHeight = 780;
+  DATA.steps.forEach((step, index) => {
+    const x = STEP_X + index * STEP_GAP;
+    let y = 128;
+    layout[step.id] = { x, clusters: {} };
+    step.clusters.forEach((cluster) => {
+      const h = nodeHeight(cluster);
+      layout[step.id].clusters[cluster.id] = {
+        x,
+        y,
+        w: NODE_W,
+        h,
+        cx: x + NODE_W / 2,
+        cy: y + h / 2,
+      };
+      y += h + NODE_GAP_Y;
+      maxHeight = Math.max(maxHeight, y + 160);
+    });
+  });
+  graphStageEl.style.minHeight = `${maxHeight}px`;
+  graphStageEl.style.minWidth = `${MERGE_NODE_X + 340}px`;
+}
+
+function clearTimers() {
+  if (queuedTimeout) {
+    clearTimeout(queuedTimeout);
+    queuedTimeout = null;
+  }
+}
+
+function stop() {
+  playing = false;
+  playBtn.textContent = "播放";
+  clearTimers();
+}
+
+function schedule(fn, delay) {
+  queuedTimeout = setTimeout(fn, delay);
+}
+
+function renderTimeline() {
+  timelineEl.innerHTML = "";
+  DATA.scenes.forEach((scene, index) => {
+    const pill = document.createElement("div");
+    pill.className = "scene-pill";
+    if (index < cursor) pill.classList.add("done");
+    if (index === cursor) pill.classList.add("active");
+    pill.innerHTML = `<div class="id">${scene.timeline_label}</div><div class="label">${scene.label}</div>`;
+    timelineEl.appendChild(pill);
+  });
+}
+
+function riskClass(risk) {
+  return ["low", "medium", "high", "critical"].includes(risk) ? risk : "medium";
+}
+
+function personaVisual(agentId) {
+  return PERSONA_VISUALS[agentId] || { short: "AG", color: "#38bdf8" };
+}
+
+function avatarHtml(agentId, name, size = "md", extraClass = "") {
+  const visual = personaVisual(agentId);
+  return `<span class="avatar ${size} ${extraClass}" title="${name}" style="background:${visual.color}">${visual.short}</span>`;
+}
+
+function renderVoices(step) {
+  voicesEl.innerHTML = "";
+  if (!step) return;
+  step.voices.forEach((voice) => {
+    const bubble = document.createElement("div");
+    bubble.className = "voice";
+    bubble.innerHTML = `
+      <div class="voice-head">
+        ${avatarHtml(voice.agent_id, voice.agent, "md")}
+        <div class="agent">${voice.agent}</div>
+      </div>
+      <div class="verdict">${voice.verdict}</div>
+      <div class="meta">${Math.round(voice.confidence)} 分 · ${voice.contagion_risk}</div>
+    `;
+    voicesEl.appendChild(bubble);
+  });
+}
+
+function renderInspector(scene, step, visibleNodes) {
+  inspectorEl.innerHTML = "";
+  const summary = document.createElement("div");
+  summary.className = "section-card";
+  summary.innerHTML = `
+    <h3>${scene.timeline_label} · ${scene.label}</h3>
+    <p>${scene.note}</p>
+    ${step ? step.actions.map((item) => `<div>${item}</div>`).join("") : ""}
+  `;
+  inspectorEl.appendChild(summary);
+
+  if (step) {
+    const clusterCard = document.createElement("div");
+    clusterCard.className = "section-card";
+    clusterCard.innerHTML = `
+      <h3>Current Consensus Points</h3>
+      ${visibleNodes.map((node) => `<div>${node.title} · ${node.members.length} 人 · ${Math.round(node.avg_confidence)}%</div>`).join("")}
+    `;
+    inspectorEl.appendChild(clusterCard);
+
+    if (step.transitions_in && step.transitions_in.length) {
+      const flow = document.createElement("div");
+      flow.className = "section-card";
+      flow.innerHTML = `<h3>People Moving Into ${step.id}</h3>`;
+      step.transitions_in.forEach((item) => {
+        const row = document.createElement("div");
+        row.className = "flow-row";
+        row.innerHTML = `<div><strong>${item.count}</strong> 人</div><div>${item.agent_names.join("、")}</div>`;
+        flow.appendChild(row);
+      });
+      inspectorEl.appendChild(flow);
+    }
+  }
+
+  if (scene.type === "rollback") {
+    const card = document.createElement("div");
+    card.className = "section-card";
+    card.innerHTML = `
+      <h3>Rollback</h3>
+      <div>从 ${scene.from_step_id} 倒带回 ${scene.to_step_id}</div>
+      <div>强调：我们回到首次显著分歧，而不是只展示最终结论。</div>
+    `;
+    inspectorEl.appendChild(card);
+  }
+
+  if (scene.type === "merge") {
+    const card = document.createElement("div");
+    card.className = "section-card";
+    card.innerHTML = `
+      <h3>Merge Back To Main</h3>
+      <div>胜出群体：稳定回归点</div>
+      <div>目标：${DATA.finale.merge_target_label}</div>
+    `;
+    inspectorEl.appendChild(card);
+  }
+}
+
+function staticPath(pathD, count, highlighted = false, strong = false) {
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", pathD);
+  path.setAttribute("fill", "none");
+  path.setAttribute("stroke", highlighted ? "rgba(103,232,249,0.9)" : "rgba(96,165,250,0.24)");
+  path.setAttribute("stroke-width", String((strong ? 2.4 : 1.5) + count));
+  path.setAttribute("stroke-linecap", "round");
+  graphSvg.appendChild(path);
+  return path;
+}
+
+function makeFlowToken(label) {
+  const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  group.setAttribute("class", "flow-token");
+  const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  rect.setAttribute("x", "-14");
+  rect.setAttribute("y", "-11");
+  rect.setAttribute("width", "28");
+  rect.setAttribute("height", "22");
+  rect.setAttribute("rx", "11");
+  group.appendChild(rect);
+  const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  circle.setAttribute("cx", "-7");
+  circle.setAttribute("cy", "0");
+  circle.setAttribute("r", "4");
+  group.appendChild(circle);
+  const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  text.setAttribute("x", "5");
+  text.setAttribute("y", "0");
+  text.textContent = label;
+  group.appendChild(text);
+  effectSvg.appendChild(group);
+  return group;
+}
+
+function createSceneNote(text) {
+  const note = document.createElement("div");
+  note.className = "scene-note";
+  note.innerHTML = `<div class="kicker">Scene Note</div><div class="text">${text}</div>`;
+  graphStageEl.appendChild(note);
+}
+
+function createEffectLabel(text, kind = "") {
+  const label = document.createElement("div");
+  label.className = `effect-label ${kind}`.trim();
+  label.textContent = text;
+  graphStageEl.appendChild(label);
+  return label;
+}
+
+function bubbleStartPosition(stepIndex, voiceIndex) {
+  const x = STEP_X + stepIndex * STEP_GAP - 34 + (voiceIndex % 2) * 26;
+  const y = 128 + (voiceIndex % 6) * 82 + Math.floor(voiceIndex / 6) * 10;
+  return { x, y };
+}
+
+function bubbleTargetPosition(clusterPos, voiceIndex) {
+  const col = voiceIndex % 2;
+  const row = Math.floor(voiceIndex / 2);
+  return {
+    x: clusterPos.x + 18 + col * 94,
+    y: clusterPos.y + 88 + row * 24,
+  };
+}
+
+function findVoiceTargetCluster(step, agentId) {
+  return step.clusters.find((cluster) => cluster.members.includes(agentId));
+}
+
+function animateVoiceAbsorption(step, duration, tokenId) {
+  const stepIndex = getStepIndex(step.id);
+  const overlays = [];
+  const visibleVoices = step.voices.slice(0, 12);
+
+  visibleVoices.forEach((voice, index) => {
+    const cluster = findVoiceTargetCluster(step, voice.agent_id);
+    const clusterPos = layout[step.id].clusters[cluster.id];
+    const start = bubbleStartPosition(stepIndex, index);
+    const target = bubbleTargetPosition(clusterPos, index);
+    const bubble = document.createElement("div");
+    bubble.className = "voice-bubble";
+    bubble.innerHTML = `
+      <div class="bubble-head">
+        ${avatarHtml(voice.agent_id, voice.agent, "sm")}
+        <div class="agent">${voice.agent}</div>
+      </div>
+      <div class="verdict">${voice.verdict}</div>
+      <div class="meta">${Math.round(voice.confidence)} 分</div>
+    `;
+    bubble.style.left = `${start.x}px`;
+    bubble.style.top = `${start.y}px`;
+    graphStageEl.appendChild(bubble);
+    overlays.push({ bubble, start, target, clusterId: cluster.id });
+  });
+
+  const startedAt = performance.now();
+  function frame(now) {
+    if (tokenId !== sceneToken) return;
+    const raw = Math.min(1, (now - startedAt) / duration);
+    const eased = raw < 0.45 ? raw / 0.45 : 1 - Math.pow(1 - (raw - 0.45) / 0.55, 3);
+    overlays.forEach(({ bubble, start, target }) => {
+      const x = start.x + (target.x - start.x) * eased;
+      const y = start.y + (target.y - start.y) * eased;
+      const scale = 1 - Math.max(0, raw - 0.55) * 0.35;
+      const opacity = 1 - Math.max(0, raw - 0.58) * 1.5;
+      bubble.style.left = `${x}px`;
+      bubble.style.top = `${y}px`;
+      bubble.style.transform = `scale(${scale})`;
+      bubble.style.opacity = String(Math.max(0, opacity));
+    });
+    if (raw < 1) {
+      requestAnimationFrame(frame);
+      return;
+    }
+    overlays.forEach(({ bubble }) => bubble.remove());
+  }
+  requestAnimationFrame(frame);
+}
+
+function animateStepTransitions(step, previousStep, duration, tokenId) {
+  const transitions = step.transitions_in || [];
+  const currentNodes = [...graphStageEl.querySelectorAll(`.node[data-step="${step.id}"]`)];
+  currentNodes.forEach((node) => {
+    node.classList.add("pre-enter");
+  });
+  if (!transitions.length) {
+    currentNodes.forEach((node) => node.classList.remove("pre-enter"));
+    return;
+  }
+
+  const animated = transitions.map((transition) => {
+    const from = layout[previousStep.id].clusters[transition.from];
+    const to = layout[step.id].clusters[transition.to];
+    if (!from || !to) return null;
+    const d = `M ${from.x + NODE_W - 34} ${from.cy} C ${from.cx + 62} ${from.cy}, ${to.cx - 62} ${to.cy}, ${to.x + 34} ${to.cy}`;
+    const path = staticPath(d, transition.count, true, true);
+    const length = path.getTotalLength();
+    path.style.strokeDasharray = `${length}`;
+    path.style.strokeDashoffset = `${length}`;
+    const token = makeFlowToken(transition.count);
+    const point = path.getPointAtLength(0);
+    token.setAttribute("transform", `translate(${point.x}, ${point.y})`);
+    token.style.opacity = "0";
+    return { path, length, token };
+  }).filter(Boolean);
+
+  const startedAt = performance.now();
+  function frame(now) {
+    if (tokenId !== sceneToken) return;
+    const raw = Math.min(1, (now - startedAt) / duration);
+    const eased = 1 - Math.pow(1 - raw, 3);
+    animated.forEach(({ path, length, token }) => {
+      path.style.strokeDashoffset = `${length * (1 - eased)}`;
+      const point = path.getPointAtLength(length * eased);
+      token.setAttribute("transform", `translate(${point.x}, ${point.y})`);
+      token.style.opacity = String(Math.min(1, raw * 1.8));
+    });
+    currentNodes.forEach((node) => {
+      const reveal = Math.max(0, (raw - 0.18) / 0.82);
+      const opacity = 0.15 + reveal * 0.85;
+      const translateY = 18 - reveal * 20;
+      const scale = 0.985 + reveal * 0.015;
+      node.style.opacity = String(opacity);
+      node.style.transform = `translateY(${translateY}px) scale(${scale})`;
+    });
+    if (raw < 1) {
+      requestAnimationFrame(frame);
+      return;
+    }
+    animated.forEach(({ path, token }) => {
+      path.style.strokeDasharray = "";
+      path.style.strokeDashoffset = "";
+      token.remove();
+    });
+    currentNodes.forEach((node) => {
+      node.classList.remove("pre-enter");
+      node.style.opacity = "1";
+      node.style.transform = "";
+    });
+  }
+  requestAnimationFrame(frame);
+}
+
+function animateRollback(scene, duration, tokenId) {
+  const fromIndex = getStepIndex(scene.from_step_id);
+  const toIndex = getStepIndex(scene.to_step_id);
+  const startX = layout[DATA.steps[fromIndex].id].x + 170;
+  const endX = layout[DATA.steps[toIndex].id].x - 24;
+  const sweep = document.createElement("div");
+  sweep.className = "sweep";
+  sweep.style.left = `${startX}px`;
+  graphStageEl.appendChild(sweep);
+
+  const futureNodes = [...graphStageEl.querySelectorAll(".node")];
+  const futureTitles = [...graphStageEl.querySelectorAll(".column-title")];
+  const targetNodes = [...graphStageEl.querySelectorAll(`.node[data-step="${scene.to_step_id}"]`)];
+  const label = createEffectLabel(`REWIND TO ${scene.to_step_id}`, "rollback");
+
+  const startedAt = performance.now();
+  function frame(now) {
+    if (tokenId !== sceneToken) return;
+    const raw = Math.min(1, (now - startedAt) / duration);
+    const eased = 1 - Math.pow(1 - raw, 3);
+    const x = startX + (endX - startX) * eased;
+    sweep.style.left = `${x}px`;
+
+    futureNodes.forEach((node) => {
+      const stepId = node.dataset.step;
+      if (getStepIndex(stepId) > toIndex) node.classList.toggle("dimmed", raw > 0.3);
+    });
+    futureTitles.forEach((title) => {
+      const stepId = title.dataset.step;
+      if (stepId && getStepIndex(stepId) > toIndex) title.classList.toggle("dimmed", raw > 0.3);
+    });
+    targetNodes.forEach((node) => node.classList.toggle("rollback-target", raw > 0.6));
+
+    if (raw < 1) {
+      requestAnimationFrame(frame);
+      return;
+    }
+    sweep.remove();
+    label.remove();
+  }
+  requestAnimationFrame(frame);
+}
+
+function animateMerge(scene, duration, tokenId) {
+  const winner = findCluster(scene.winner_cluster_id);
+  const stepId = scene.winner_cluster_id.split("_")[0];
+  const pos = layout[stepId].clusters[scene.winner_cluster_id];
+  const label = createEffectLabel("MERGE BACK TO MAIN", "merge");
+
+  const mergeNode = document.createElement("div");
+  mergeNode.className = "merge-node";
+  mergeNode.style.left = `${MERGE_NODE_X}px`;
+  mergeNode.style.top = `${MERGE_NODE_Y}px`;
+  mergeNode.innerHTML = `
+    <div class="title">${DATA.finale.merge_target_label}</div>
+    <div class="summary">把 ${winner.title} 的胜出判断吸收为新的主线记忆。</div>
+    <div class="merge-members">${winner.members.map((agentId, idx) => avatarHtml(agentId, winner.member_names[idx], "sm")).join("")}</div>
+  `;
+  graphStageEl.appendChild(mergeNode);
+
+  const mergePathD = `M ${pos.x + NODE_W - 30} ${pos.cy} C ${pos.cx + 120} ${pos.cy}, ${MERGE_NODE_X - 60} ${MERGE_NODE_Y + 60}, ${MERGE_NODE_X + 24} ${MERGE_NODE_Y + 60}`;
+  const path = staticPath(mergePathD, 4, true, true);
+  const length = path.getTotalLength();
+  path.style.strokeDasharray = `${length}`;
+  path.style.strokeDashoffset = `${length}`;
+
+  const token = makeFlowToken("M");
+  const startPoint = path.getPointAtLength(0);
+  token.setAttribute("transform", `translate(${startPoint.x}, ${startPoint.y})`);
+  token.style.opacity = "0";
+
+  const startedAt = performance.now();
+  function frame(now) {
+    if (tokenId !== sceneToken) return;
+    const raw = Math.min(1, (now - startedAt) / duration);
+    const eased = 1 - Math.pow(1 - raw, 3);
+    path.style.strokeDashoffset = `${length * (1 - eased)}`;
+    const point = path.getPointAtLength(length * eased);
+    token.setAttribute("transform", `translate(${point.x}, ${point.y})`);
+    token.style.opacity = String(Math.min(1, raw * 1.8));
+    mergeNode.style.opacity = String(0.2 + raw * 0.8);
+    mergeNode.style.transform = `translateY(${12 - raw * 12}px)`;
+    if (raw < 1) {
+      requestAnimationFrame(frame);
+      return;
+    }
+    token.remove();
+    label.remove();
+  }
+  requestAnimationFrame(frame);
+}
+
+function renderBaseGraph(scene) {
+  graphSvg.innerHTML = "";
+  effectSvg.innerHTML = "";
+  graphStageEl.querySelectorAll(".column-title, .node, .scene-note, .voice-bubble, .merge-node, .sweep").forEach((el) => el.remove());
+  sceneToken += 1;
+  const tokenId = sceneToken;
+
+  const visibleSteps = DATA.steps.slice(0, scene.visible_step_count);
+  const currentStep = scene.step_id ? findStep(scene.step_id) : null;
+  const visibleNodes = [];
+
+  visibleSteps.forEach((step) => {
+    const title = document.createElement("div");
+    title.className = "column-title";
+    title.dataset.step = step.id;
+    title.style.left = `${layout[step.id].x}px`;
+    title.style.top = "24px";
+    title.innerHTML = `<div class="time">${step.id} · ${step.real_time}</div><div class="label">${step.label}</div>`;
+    graphStageEl.appendChild(title);
+
+    step.clusters.forEach((cluster) => {
+      const pos = layout[step.id].clusters[cluster.id];
+      const node = document.createElement("div");
+      node.className = "node";
+      node.dataset.step = step.id;
+      node.dataset.cluster = cluster.id;
+      if (currentStep && currentStep.id === step.id) node.classList.add("active");
+      node.style.left = `${pos.x}px`;
+      node.style.top = `${pos.y}px`;
+      node.style.height = `${pos.h}px`;
+      node.innerHTML = `
+        <div class="title">${cluster.title}</div>
+        <div class="summary">${cluster.summary}</div>
+        <div class="chips">
+          <span class="chip ${riskClass(cluster.risk)}">${cluster.risk}</span>
+          <span class="chip medium">${Math.round(cluster.avg_confidence)}%</span>
+        </div>
+        <div class="member-grid">${cluster.members.map((agentId, idx) => `<span class="member-avatar" data-name="${cluster.member_names[idx]}">${avatarHtml(agentId, cluster.member_names[idx], "sm")}</span>`).join("")}</div>
+      `;
+      graphStageEl.appendChild(node);
+      visibleNodes.push(cluster);
+    });
+  });
+
+  visibleSteps.slice(1).forEach((step, idx) => {
+    const isCurrent = currentStep && step.id === currentStep.id && scene.type === "step";
+    (step.transitions_in || []).forEach((transition) => {
+      const prevStep = DATA.steps[idx];
+      const from = layout[prevStep.id].clusters[transition.from];
+      const to = layout[step.id].clusters[transition.to];
+      if (!from || !to) return;
+      const d = `M ${from.x + NODE_W - 34} ${from.cy} C ${from.cx + 62} ${from.cy}, ${to.cx - 62} ${to.cy}, ${to.x + 34} ${to.cy}`;
+      if (isCurrent) return;
+      staticPath(d, transition.count, false, false);
+    });
+  });
+
+  createSceneNote(scene.note);
+  renderInspector(scene, currentStep, currentStep ? currentStep.clusters : visibleNodes.slice(-1));
+  return { tokenId, currentStep };
+}
+
+function runScene(scene, animated = true) {
+  const { tokenId, currentStep } = renderBaseGraph(scene);
+  renderTimeline();
+  renderVoices(currentStep);
+
+  if (!animated) return;
+
+  if (scene.type === "step" && currentStep) {
+    animateVoiceAbsorption(currentStep, Math.max(900, currentStepDuration() * 0.44), tokenId);
+    const stepIndex = getStepIndex(currentStep.id);
+    if (stepIndex === 0) {
+      const originNodes = [...graphStageEl.querySelectorAll(`.node[data-step="${currentStep.id}"]`)];
+      originNodes.forEach((node) => node.classList.add("pre-enter"));
+      schedule(() => {
+        if (tokenId !== sceneToken) return;
+        originNodes.forEach((node) => node.classList.remove("pre-enter"));
+      }, Math.max(850, currentStepDuration() * 0.5));
+      return;
+    }
+    schedule(() => {
+      if (tokenId !== sceneToken) return;
+      animateStepTransitions(currentStep, DATA.steps[stepIndex - 1], Math.max(1100, currentStepDuration() * 0.56), tokenId);
+    }, Math.max(520, currentStepDuration() * 0.26));
+    return;
+  }
+
+  if (scene.type === "rollback") {
+    renderVoices(findStep(scene.to_step_id));
+    animateRollback(scene, Math.max(1800, currentStepDuration() * 0.95), tokenId);
+    return;
+  }
+
+  if (scene.type === "merge") {
+    renderVoices(findStep("T6"));
+    animateMerge(scene, Math.max(1800, currentStepDuration() * 0.95), tokenId);
+  }
+}
+
+function renderCurrent(animated = false) {
+  clearTimers();
+  runScene(currentScene(), animated);
+}
+
+function stepForward(animated = true) {
+  if (cursor >= DATA.scenes.length - 1) {
+    stop();
+    return;
+  }
+  cursor += 1;
+  renderCurrent(animated);
+}
+
+function playLoop() {
+  if (!playing) return;
+  if (cursor >= DATA.scenes.length - 1) {
+    stop();
+    return;
+  }
+  stepForward(true);
+  const scene = currentScene();
+  const duration = scene.type === "step" ? currentStepDuration() + 500 : Math.max(2200, currentStepDuration());
+  schedule(playLoop, duration);
+}
+
+function play() {
+  if (playing) {
+    stop();
+    return;
+  }
+  playing = true;
+  playBtn.textContent = "暂停";
+  renderCurrent(true);
+  const scene = currentScene();
+  const duration = scene.type === "step" ? currentStepDuration() + 500 : Math.max(2200, currentStepDuration());
+  schedule(playLoop, duration);
+}
+
+playBtn.addEventListener("click", play);
+nextBtn.addEventListener("click", () => {
+  stop();
+  if (cursor < DATA.scenes.length - 1) {
+    cursor += 1;
+    renderCurrent(true);
+  }
+});
+prevBtn.addEventListener("click", () => {
+  stop();
+  cursor = Math.max(0, cursor - 1);
+  renderCurrent(false);
+});
+speedEl.addEventListener("input", () => {
+  speedLabel.textContent = `${(Number(speedEl.value) / 1000).toFixed(1)}s`;
+});
+
+computeLayout();
+renderCurrent(false);
+</script>
+</body>
+</html>
